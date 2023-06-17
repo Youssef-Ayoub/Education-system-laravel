@@ -1,0 +1,102 @@
+.Bolded-card-Text{
+    font-weight: bold;
+}
+.unique-title {
+    color: $black;
+    font-family: $bold-font;
+}
+
+.unique-subtitle {
+    color: $black;
+    font-family: $light-font;
+}
+
+.small-title {
+    color: $pink;
+    font-family: $medium-font;
+}
+
+.large-title {
+    color: $black;
+    font-family: $bold-font;
+}
+
+.subtitle {
+    font-family: $regular-font;
+}
+
+/*  mobile
+================================ */
+html {
+    direction: $def-direction;
+    font-size: 14px;
+}
+.small-title {
+    font-size: rem(12px,14px);
+}
+.large-title {
+    font-size: rem(26px,14px);
+}
+.unique-title {
+    font-size: rem(38px,14px);
+}
+.unique-subtitle {
+    font-size: rem(14px,14px);
+}
+.subtitle {
+    font-size: rem(14,14);
+    padding-top: rem(32,14);
+}
+
+
+
+
+/*   tablet 768
+================================ */
+@include media-breakpoint-up(md) {
+    html {
+        font-size: 22px;
+    }
+    .small-title {
+        font-size: rem(14px,22px);
+    }
+    .large-title {
+        font-size: rem(42px,22px);
+    }
+    .unique-title {
+        font-size: rem(48px,22px);
+    }
+    .unique-subtitle {
+        font-size: rem(16px,22px);
+    }
+    .subtitle {
+        font-size: rem(22,22);
+        padding-top: rem(32,22);
+    }
+}
+
+
+
+/*  1200
+================================ */
+@include media-breakpoint-up(xl) {
+    html {
+        font-size: 28px;
+    }
+    .small-title {
+        font-size: rem(14px,28px);
+    }
+    .large-title {
+        font-size: rem(45px,28px);
+    }
+    .unique-title {
+        font-size: rem(80px,28px);
+    }
+    .unique-subtitle {
+        font-size: rem(26px,14px);
+    }
+    .subtitle {
+        font-size: rem(24,28);
+        padding-top: rem(30,28);
+    }
+}

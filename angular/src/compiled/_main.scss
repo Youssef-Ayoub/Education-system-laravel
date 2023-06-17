@@ -1,0 +1,62 @@
+/* vendors file imports */
+
+@import '../styles/vendors/bootstrap/bootstrap';
+@import '../styles/vendors/_jqueryui.scss';
+@import '../styles/vendors/_owl-carousel.scss';
+@import '../styles/vendors/swiper/swiper-bundle.scss';
+
+/* abstracts file imports */
+
+@import "../styles/abstracts/colors";
+// @import '../styles/abstracts/icons';
+@import '../styles/abstracts/mixins';
+@import '../styles/abstracts/_variables.scss';
+
+/* base file imports */
+
+@import '../styles/base/_reset.scss';
+@import '../styles/base/_base.scss';
+@import '../styles/base/_normalize.scss';
+@import '../styles/base/_typography.scss';
+@import '../styles/base/functions.scss';
+
+
+/* layout file imports */
+
+// @import '../styles/layout/_footer.scss';
+// @import '../styles/layout/_header.scss';
+// @import '../styles/layout/_navbar.scss';
+// @import '../styles/layout/_sidebar.scss';
+@import '../styles/layout/_section.scss';
+// @import '../styles/layout/_shifting.scss';
+
+/* components file imports */
+
+// @import '../styles/components/_alert.scss';
+@import '../styles/components/_button.scss';
+// @import '../styles/components/_label.scss';
+// @import '../styles/components/_modal.scss';
+@import '../styles/components/_profile-card.scss';
+@import "../styles/components/_card.scss";
+@import '../styles/components/_titles.scss';
+// @import '../styles/components/_profile-card-edited.scss';
+// @import '../styles/components/_banner.scss';
+// @import '../styles/components/_contrast-menu';
+
+/* pages file imports */
+
+// @import '../styles/pages/_blog.scss';
+// @import '../styles/pages/_login.scss';
+// @import '../styles/pages/_product.scss';
+// @import '../styles/pages/_signup.scss';
+// @import '../styles/pages/_photoGalleryDetails.scss';
+// @import '../styles/pages/news-details';
+@import '../styles/pages/article';
+// @import '../styles/pages/News-Listing';
+// @import '../styles/pages/success_stories';
+
+// /* themes file imports */
+
+// @import '../styles/themes/_dark-theme.scss';
+// @import '../styles/themes/_light-theme.scss';
+// @import '../styles/themes/_material-theme.scss';

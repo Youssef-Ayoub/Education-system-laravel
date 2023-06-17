@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class=" layout header-sec" >
+  <div class="titles">
+       <div  class="large-title Bolded-card-Text">Trending Courses</div>
+   </div>
+  <a href="">View All</a>
+ </div>
+<div class="courses-layout">
+   <div class="row">
+    <div class="col-lg-4" *ngFor="let course of coursesR1">
+      <app-course-card  [title]="course.title" [description]="course.discription" [image]="course.image" [instructor]="course.instructor"></app-course-card>
+     </div>
+  </div>
+</div>
+<div class=" layout header-sec" >
+  <div class="titles">
+       <div  class="large-title Bolded-card-Text">Suggested Courses</div>
+   </div>
+  <a href="">View All</a>
+</div>
+<div class="courses-layout">
+  <div class="row">
+    <div class="col-lg-4" *ngFor="let course of coursesR2">
+      <app-course-card  [title]="course.title" [description]="course.discription" [image]="course.image" [instructor]="course.instructor"></app-course-card>
+     </div>
+  </div>
+</div>
+<app-footer></app-footer>
+

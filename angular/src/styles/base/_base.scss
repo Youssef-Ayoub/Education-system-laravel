@@ -1,0 +1,114 @@
+/* base */
+/*  mobile
+================================ */
+html {
+    direction: $def-direction;
+   // overflow-y: hidden;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+}
+.fontInc{
+    font-size:16px;
+}
+.fontDec{
+    font-size: 12px;
+}
+
+
+*,::before,::after{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    // padding-bottom: 2px;
+}
+
+
+
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.img-adjust{
+  img{
+  width: 100% !important;
+  height: 100% !important;}
+}
+
+/*  mobile
+================================ */
+html {
+    direction: $def-direction;
+    // font-size: $font-size-s !important;
+    // overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.normalFont{font-size: 14px;}
+.smallFont{font-size: 10px;}
+.largeFont{font-size: 18px;
+  .nav-link li{
+    padding: 0;
+  }
+}
+
+
+/*   tablet 768
+================================ */
+@include media-breakpoint-up(md) {
+  .normalFont {
+        font-size: 18px;
+    }
+    .smallFont{
+      font-size: 14px;
+    }
+    .largeFont{
+      font-size: 22px;
+    }
+
+}
+
+/*  1200
+================================ */
+@include media-breakpoint-up(xl) {
+  .normalFont {
+        font-size: 22px ;
+    }
+  .smallFont {
+        font-size: 18px ;
+    }
+  .largeFont {
+        font-size: 26px ;
+    }
+    .img-adjust{
+     img{ max-height: 25rem !important; width: 100%;}
+      // overflow: hidden;
+    }
+}
+@include media-breakpoint-up(xxl)
+{
+  .normalFont{
+    font-size: 28px ;
+  }
+  .smallFont{
+    font-size: 24px ;
+  }
+  .largeFont{
+    font-size: 32px ;
+  }
+  .img-adjust{
+    img{width:26rem !important;}
+
+  }
+}
+

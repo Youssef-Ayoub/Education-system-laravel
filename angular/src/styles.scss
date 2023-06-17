@@ -1,0 +1,38 @@
+/* vendors file imports */
+@import './styles/vendors/bootstrap/bootstrap';
+@import './styles/vendors/bootstrap/bootstrap.min.css';
+
+
+/*abstract file imports */
+@import './styles//abstracts/variables';
+@import './styles//abstracts/colors';
+@import './styles//abstracts/icons';
+@import './styles//abstracts/mixins';
+
+
+
+/*base file imports */
+
+@import './styles/base/base';
+@import './styles/base/all.css';
+@import './styles/base/functions';
+@import './styles/base/reset';
+
+/*layout file imports */
+@import './styles/layout/footer';
+@import './styles/layout/header';
+@import './styles/layout/navbar';
+@import './styles/layout/section';
+
+
+
+
+/*Components file imports */
+@import './styles/components/button';
+@import './styles/components/titles';
+
+
+/* pages file imports */
+
+@import './styles/pages/_login.scss';
+@import './styles/pages/_signup.scss';

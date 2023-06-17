@@ -1,0 +1,21 @@
+<div class="course">
+  <div class="course-top" *ngIf="course">
+      <img  class="zoom" src={{image}} alt="Course image">
+      <!-- <div class="raiting">
+          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
+          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
+          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
+          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
+          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
+      </div> -->
+  </div>
+  <div class="course-body" *ngIf="course">
+      <h2> {{title}}</h2>
+      <p> {{description}}</p>
+      <div class="course-footer">
+          <a class="btn">Enroll</a>
+          <span>{{instructor}}</span>
+      </div>
+  </div>
+</div>
+

@@ -1,0 +1,107 @@
+ // Labtop //////////////////
+
+/*  mobile
+================================ */
+html {
+    direction: $def-direction;
+    font-size: 14px;
+}
+    .button1 {
+        padding-#{$def-float}: rem(24px,14px);
+        padding-#{$opp-float}: rem(24px,14px);
+        padding-top: rem(14px,14px);
+        padding-bottom: rem(14px,14px);
+        font-size: rem(14px,14px);
+    }
+    .button2,.button4 {
+        padding-#{$def-float}: rem(31px,14px);
+        padding-#{$opp-float}: rem(31px,14px);
+        padding-top: rem(13px,14px);
+        padding-bottom: rem(14px,14px);
+        font-size: rem(16px,14px);
+    }
+    .button-right,.button-left {
+        width: rem(40,14);
+        height: rem(40,14);
+    }
+    .button3 {
+        padding-#{$def-float}: rem(23px,14px);
+        padding-#{$opp-float}: rem(23px,14px);
+        padding-top: rem(13px,14px);
+        padding-bottom: rem(14px,14px);
+        font-size: rem(16px,14px);
+    }
+
+
+
+
+
+/*   tablet 768
+================================ */
+@include media-breakpoint-up(md) {
+    html {
+        font-size: 22px;
+    }
+    .button1 {
+        padding-#{$def-float}: rem(37px,22px);
+        padding-#{$opp-float}: rem(37px,22px);
+        padding-top: rem(27px,22px);
+        padding-bottom: rem(27px,22px);
+        font-size: rem(16px,22px);
+    }
+    .button2 , .button4{
+        padding-#{$def-float}: rem(53px,22px);
+        padding-#{$opp-float}: rem(53px,22px);
+        padding-top: rem(22px,22px);
+        padding-bottom: rem(23px,22px);
+        font-size: rem(20px,22px);
+    }
+    .button-right,.button-left {
+        width: rem(50,22);
+        height: rem(50,22);
+    }
+    .button3 {
+        padding-#{$def-float}: rem(40px,22px);
+        padding-#{$opp-float}: rem(40px,22px);
+        padding-top: rem(15px,22px);
+        padding-bottom: rem(16px,22px);
+        font-size: rem(16px,22px);
+    }
+    .button-right,.button-left {
+        width: rem(50,22);
+        height: rem(50,22);
+    }
+}
+
+/*  1200
+================================ */
+@include media-breakpoint-up(xl) {
+    html {
+        font-size: 28px;
+    }
+    .button1 {
+        padding-#{$def-float}: rem(47px,28px);
+        padding-#{$opp-float}: rem(47px,28px);
+        padding-top: rem(31px,28px);
+        padding-bottom: rem(32px,28px);
+        font-size: rem(24px,28px);
+    }
+    .button2,.button4 {
+        padding-#{$def-float}: rem(55px,28px);
+        padding-#{$opp-float}: rem(55px,28px);
+        padding-top: rem(20px,28px);
+        padding-bottom: rem(22px,28px);
+        font-size: rem(20px,28px);
+    }
+    .button-right,.button-left {
+        width: rem(60,28);
+        height: rem(60,28);
+    }
+    .button3 {
+        padding-#{$def-float}: rem(50px,28px);
+        padding-#{$opp-float}: rem(50px,28px);
+        padding-top: rem(19px,28px);
+        padding-bottom: rem(21px,28px);
+        font-size: rem(18px,28px);
+    }
+}

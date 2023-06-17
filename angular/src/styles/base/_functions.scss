@@ -1,0 +1,5 @@
+@function rem($value,$base){
+    @if type-of($value)--"number"{
+        @return (calc($value/$base))*1rem;
+    }
+}

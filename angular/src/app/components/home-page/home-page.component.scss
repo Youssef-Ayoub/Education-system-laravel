@@ -1,0 +1,35 @@
+.courses-layout{
+  width: 80%;
+  margin: auto;
+}
+.header-sec{
+  height: 100px;
+  overflow: hidden;
+  margin: 50px;
+  box-sizing: border-box;
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+}
+.header-sec .titles{
+align-self: center;
+}
+.header-sec a{
+    width: 150px;
+    height: 40px;
+    align-self: center;
+    text-align: center;
+    line-height: 40px;
+    background-color: #f4a261;
+    color: white;
+    border-radius: 5px;
+}
+.header-sec a:hover{
+  transition : 1000ms;
+  transform : translateY(-0px);
+  background-color: #fff;
+  color: #0066cc;
+  border: solid 2px #0066cc;
+  box-sizing: border-box;
+  }
+

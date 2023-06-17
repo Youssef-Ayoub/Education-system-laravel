@@ -1,0 +1,20 @@
+/* section classes */
+
+/*  1200
+================================ */
+@include media-breakpoint-up(xl) {
+    html {
+        font-size: 23px;
+    }
+
+}
+
+/*  1400
+================================ */
+@include media-breakpoint-up(xxl) {
+    html {
+        font-size: 28px;
+    }
+
+}
+
