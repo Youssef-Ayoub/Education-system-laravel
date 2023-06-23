@@ -1,0 +1,5 @@
+{
+"admin": "6|tRFQ0DLlYZ8aD7VN6j9SvCNrusAQWtJyy2AJXYSe",
+"professor": "7|a2cj7O2web2L37do5nlKAS40wy72hPJk6kWxNtrW",
+"user": "8|25HoPY3ItEA611U3saxIzK1RwV4lo9zhyjeB9HF8"
+}
