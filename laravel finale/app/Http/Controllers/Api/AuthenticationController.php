@@ -30,6 +30,6 @@ class AuthenticationController extends Controller
         }
         $user = User::where('email', $request->email)->first();
 
-        return response()->json(['status' => 'successfully logged in ']);
+        return response()->json(['status' => 'successfully logged in ', $user]);
     }
 }
