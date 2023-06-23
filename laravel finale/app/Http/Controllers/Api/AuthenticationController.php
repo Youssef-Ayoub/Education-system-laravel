@@ -26,7 +26,7 @@ class AuthenticationController extends Controller
         $request->validated($request->all());
 
         if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json('', 'credentials does not match');
+            return response()->json('credentials does not match');
         }
         $user = User::where('email', $request->email)->first();
 

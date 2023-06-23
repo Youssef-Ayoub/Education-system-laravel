@@ -1,4 +1,5 @@
 import { Component ,OnInit } from '@angular/core';
+import { MyDataService } from '../../../services/my-data.service';
 
 @Component({
   selector: 'app-course-details',
@@ -19,20 +20,23 @@ export class CourseDetailsComponent implements OnInit {
     {week:5 , pdf:"Chapter5" , video:"Chapter5Vid2"} ,
   ]
 
-  courseReviews=[
-    {userName:"Ahmed" , Comment:"GOOOD"},
-    {userName:"mariam" , Comment:"Very GOOOD"},
-    {userName:"badr" , Comment:"nice"},
-    {userName:"ali" , Comment:"mshNice"},
-    {userName:"mostafa" , Comment:"GOOokkkOD"},
-    {userName:"Abdo" , Comment:"momtazzz"}
-  ]
+  courseReviews:any;
+  // courseReviews=[
+  //   {userName:"Ahmed" , Comment:"GOOOD"},
+  //   {userName:"mariam" , Comment:"Very GOOOD"},
+  //   {userName:"badr" , Comment:"nice"},
+  //   {userName:"ali" , Comment:"mshNice"},
+  //   {userName:"mostafa" , Comment:"GOOokkkOD"},
+  //   {userName:"Abdo" , Comment:"momtazzz"}
+  // ]
 
-  constructor(){
+  constructor(private MyDataService:MyDataService){
 
   }
   ngOnInit(): void {
-
+    this.MyDataService.AllComments().subscribe((data)=>{
+      this.courseReviews=data;
+      })
   }
 
   get contentByWeek() {
@@ -50,7 +54,8 @@ export class CourseDetailsComponent implements OnInit {
         contentByWeek[weekIndex].items.push(item);
       }
     });
-
+    console.log(this.courseReviews  ,"sss");
     return contentByWeek;
+
   }
 }
