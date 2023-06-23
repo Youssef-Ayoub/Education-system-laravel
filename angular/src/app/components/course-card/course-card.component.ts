@@ -9,8 +9,9 @@ export class CourseCardComponent implements OnInit {
   @Input() course: boolean = true
   @Input() title: string = 'Computer Network'
   @Input() id: number = 1
+  @Input() numOfStudents: number = 1
   @Input() description: string = 'computer network course'
-  @Input() category: string = "Comuter Science";
+  @Input() category: string = "Development";
   @Input() instructor: string = "Ahmed Badr";
   @Input() image: string = "./assets/images/first pic.jpg";
 

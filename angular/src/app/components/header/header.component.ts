@@ -6,6 +6,7 @@ import { Component , OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  notpage:boolean=false;
   ngOnInit() {
     const mobileIcon = document.querySelector('.mobile_icon') as HTMLElement;
     const burgerBarsIcon = document.querySelector('#burger_bars_icon') as HTMLElement;
@@ -16,8 +17,7 @@ export class HeaderComponent implements OnInit {
 
     burgerBarsIcon.addEventListener('click', () => {
       if (changer === 0) {
-        navLinks.style.cssText = "height:256px;";
-        burgerBarsIcon.style.cssText = 'color:white;';
+         burgerBarsIcon.style.cssText = 'color:white;';
         nav.style.cssText='height:400px;';
 
         changer = 1;
