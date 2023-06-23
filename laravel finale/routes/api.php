@@ -38,10 +38,10 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'courses'], function
 });
 
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'comments'], function () {
-    Route::get('course/{course_id}', [CommentController::class, 'showByCourse']);
     Route::get('user/{user_id}', [CommentController::class, 'showByUser']);
     Route::post('',  [CommentController::class, 'store']);
 });
+Route::get('comments/course/{course_id}', [CommentController::class, 'showByCourse']);
 
 Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'users'], function () {
     Route::get('/{id}', [UserController::class, 'show']);
@@ -52,7 +52,6 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'users'], function (
 Route::get('categories', [CategoryController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
     Route::post('students/course', [EnrollmentController::class, 'showCourseStudents']);
     Route::post('enroll', [EnrollmentController::class, 'enroll']);
     Route::post('courses/student', [EnrollmentController::class, 'showStudentCourses']);
