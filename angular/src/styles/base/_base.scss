@@ -98,17 +98,16 @@ html {
 @include media-breakpoint-up(xxl)
 {
   .normalFont{
-    font-size: 28px ;
+    font-size: 22px ;
   }
   .smallFont{
-    font-size: 24px ;
+    font-size: 16px ;
   }
   .largeFont{
-    font-size: 32px ;
+    font-size: 28px ;
   }
   .img-adjust{
     img{width:26rem !important;}
-
   }
 }
 

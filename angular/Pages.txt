@@ -1,0 +1,30 @@
+1- Login    //done
+2- Register  //done
+
+/////////All Users/////////////
+3- Home page
+   - header //done
+   - Search bar //done
+   -landing section //done
+   - Popular Courses //done
+   - footer  //done
+4- All Courses Page  //done
+
+////// Student pages ///////////
+5- My Profile //done
+6- My Courses //done
+
+///// Proffesor Pages////////////
+5- My Profile  //done
+6- My Courses  //done
+7- Create Coures
+8- upload/delete/modify content
+
+////Course pages //////
+10- Course Details with Contents and ReviewBox (Result of Machine Learning models ) //done
+11-Content Details (PDF , Video , PPT)
+
+12-chatbot
+
+
+

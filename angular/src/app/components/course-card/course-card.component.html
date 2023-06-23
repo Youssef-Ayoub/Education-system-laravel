@@ -1,21 +1,47 @@
-<div class="course">
-  <div class="course-top" *ngIf="course">
-      <img  class="zoom" src={{image}} alt="Course image">
-      <!-- <div class="raiting">
-          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
-          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
-          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
-          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
-          <i class="fa-solid fa-star" style="color: #a3e51f;"></i>
-      </div> -->
+<div class=" course-card">
+  <!-- <div class="logo-cart">
+    <!--<img src="images/logo.jpg" alt="logo">
+    <i class='bx bx-shopping-bag'></i>
+  </div> -->
+  <div class="main-images">
+    <img  src={{image}} alt="courseImage">
+    <div class="overlay">
+        <span class="head badge" style="background: floralwhite;">{{category}}</span>
+    </div>
   </div>
-  <div class="course-body" *ngIf="course">
-      <h2> {{title}}</h2>
-      <p> {{description}}</p>
-      <div class="course-footer">
-          <a class="btn">Enroll</a>
-          <span>{{instructor}}</span>
+  <div class="course-body">
+   <div class="course-details">
+        <h2 class="course-name"> {{title}}</h2>
+        <p>{{description}}</p>
+    </div>
+      <div class="course-info">
+       <div class="info">
+            <span class="head">{{instructor}}</span>
+            <span class="content">Instructor</span>
+          </div>
+        <div class="info">
+          <span class="head"> {{numOfStudents}} </span>
+          <span class="content">Number of Students</span>
+        </div>
+
+        <div class="info">
+          <span class="stars">
+            <i class='bx bxs-star' ></i>
+            <i class='bx bxs-star' ></i>
+            <i class='bx bxs-star' ></i>
+            <i class='bx bxs-star' ></i>
+            <i class='bx bx-star' ></i>
+          </span>
+           <span class="content">Number of Reviews : 10</span>
+
+        </div>
+
+      </div>
+      <div class="button">
+        <div class="button-layer"></div>
+        <button>Enroll now</button>
       </div>
   </div>
+
 </div>
 

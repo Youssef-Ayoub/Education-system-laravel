@@ -1,0 +1,29 @@
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row row-cols-2 justify-content-between mb-3">
+      <h2 class="h1 fs-4 m-0">Trending Courses</h2>
+      <div class="button m-0">
+        <div class="button-layer"></div>
+        <a routerLink="/login">All Courses</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs bg-gray-200">
+          <li class="nav-item" (click)="setActive(-1)">
+            <a class="nav-link" [ngClass]="activTab == -1 ? 'activated' : ''">
+              All
+            </a>
+          </li>
+          <li
+            class="nav-item"
+            *ngFor="let cat of catArray; let in = index"
+            (click)="setActive(in)"
+          >
+            <a class="nav-link" [ngClass]="activTab == in ? 'activated' : ''">{{ cat }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

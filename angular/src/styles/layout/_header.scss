@@ -1,23 +1,23 @@
-:root {
-  --main-color:#0F2E9A;
-  --paragraph-color: rgba(15, 46, 154, 0.7);
-  --main-padding:70px;
-}
-body{
-  position:relative;
-}
 nav ,
 footer{
+  width: 100%;
   background: linear-gradient(89.99deg, #56d1d4 0%, #183c9f 99.99%);
+  height: 100px;
+  overflow: hidden;
+}
+nav{
+  position: fixed;
+  z-index: 9999999;
+  top: 0;
+  left: 0;
 }
 nav .container,
 footer .container {
   display: flex;
   align-items: center;
   justify-content:space-between;
-  padding-top: 10px;
-  padding-bottom: 10px;
   position:relative;
+  height: 100%;
 }
 
 #burger_bars_icon{
@@ -31,7 +31,7 @@ footer .container {
 }
  .logo
 {
-  width: fit-content;
+  width: fit-content !important;
   display: flex;
   align-items: flex-start;
   gap: 5px;
@@ -54,6 +54,7 @@ footer .container {
   flex: 2;
   display: flex;
   justify-content:center;
+  align-items: center;
   margin: 0;
 }
 footer .container .footer_links{
@@ -74,7 +75,7 @@ nav .container .nav_links li {
     }
 }
 @media(max-width:992px){
-footer .container .footer_links li {
+footer .container .footer_links li , nav .container .nav_links li {
     padding-left:13px;
     padding-right:13px;
 }
@@ -214,13 +215,13 @@ nav .container .search_bar input {
 }
 @media(min-width:992px){
    nav .container .nav_links{
-  height:fit-content !important;
+  height:100% !important;
  }
 }
 .profile_details {
   position:fixed;
   right:-300px;
-  width:300px;
+  width:200px;
   background-color:#eaeaea;
   z-index:500000000;
   height:100vh;

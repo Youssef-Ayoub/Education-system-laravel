@@ -1,0 +1,23 @@
+.bg-gray-200 {
+  --geeks-bg-opacity: 1;
+  background-color: #e2e8f0!important;
+}
+a , .nav-link{
+  color: var(--geeks-gray-500);
+  cursor: pointer;
+}
+.activated{
+  background-color: transparent;
+     border-bottom: 2px solid #3c0de2 !important;
+     box-sizing: border-box;
+    color: #754ffe !important;
+ }
+ ul{
+  flex-wrap: nowrap;
+  overflow: auto;
+  box-sizing: border-box;
+ }
+ li{
+  box-sizing: border-box;
+ }
+

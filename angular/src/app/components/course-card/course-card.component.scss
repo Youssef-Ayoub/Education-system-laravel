@@ -1,73 +1,147 @@
-.course{
-  width: 300px;
-  height: 450px;
-  margin-bottom: 50px;
-  overflow: hidden;
-  background: rgba(220, 220, 220, 0.5);
-}
- .course .course-top {
-  width: 100%;
-  height: 40%;
-  overflow: hidden;
+/* Google Fonts Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+.course-card {
   position: relative;
-}
- .course .course-top img{
+  max-width: 400px;
+  height: 70vh;
   width: 100%;
-  height: 100%;
+  border-radius: 25px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  overflow: hidden;
 }
-.course .course-top .raiting{
-position: absolute;
-top: 30px;
-left: 20px;
+.course-card .logo-cart{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.course .course-body{
+/* .course-card .logo-cart img{
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+} */
+.course-card .logo-cart i{
+  font-size: 27px;
+  color: #707070;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.course-card .logo-cart i:hover{
+  color: #333;
+}
+.course-card .main-images{
+  position: relative;
+  height: 50%;
+}
+.course-card .main-images img{
+   height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+  left: 12px;
+  top: -40px;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 25px;
+    background: rgba(69, 21, 141, 0.5);;
+    font-size: 25px;
+    padding: 10px;
+    clip-path: circle(0 at 0 0);
+    transition: all 1s;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.main-images:hover .overlay{
+    clip-path: circle(70% at 0 0);
+}
+.course-body{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+ }
+ .course-details{
   height: 60%;
+ }
+.course-card .course-details .course-name{
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: #161616;
+  height: 15%;
+  margin-block: 20px;
+}
+.course-card .course-details p{
+  height: 90%;
+  font-size: 12px;
+  font-weight: 400;
+  color: #333;
+  text-align: justify;
+  overflow: hidden;
+}
+.info .stars i{
+   color: #333;
+  font-size: 16px;
+}
+.course-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.course-info .info{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  padding: 10px;
-  box-sizing: border-box;
-}
- .course .course-body h2 {
-  color: orange;
-  font-size: 20px;
-  text-align: center;
-  margin-block: 10px;
-}
-.course-body p{
-  height: 50%;
-  margin: 0px;
-
-}
-  .course .course-body .course-footer {
-   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-size: 20px;
-
-}
-.course-footer .btn{
-  font-family: Roboto, sans-serif;
-  font-weight: 0;
-  font-size: 10px;
-  color: #fff;
-  background-color: #f4a261;
-  padding: 5px 20px;
-  border: solid #e76f51 2px;
-  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
-  border-radius: 50px;
-  transition : 1000ms;
-  transform: translateY(0);
-  display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  cursor: pointer;
-  }
-.course-footer .btn:hover{
-  transition : 1000ms;
-  padding: 5px 30px;
-  transform : translateY(-0px);
-  background-color: #fff;
-  color: #0066cc;
-  border: solid 2px #0066cc;
-  }
+}
+.head{
+  font-size: 16px;
+  font-weight: 600;
+  color: #707070;
+}
+.content{
+  font-size: 8px;
+  font-weight: 600;
+  margin-top: -4px;
+  color: #707070;
+}
+.course-card .button{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  border-radius: 25px;
+  margin-top: 30px;
+  overflow: hidden;
+}
+.course-card .button .button-layer{
+  position: absolute;
+  height: 100%;
+  width: 300%;
+  left: -100%;
+  background-image: linear-gradient(135deg,#9708CC, #43CBFF,#9708CC, #43CBFF );
+  transition: all 0.4s ease;
+  border-radius: 25PX;
+}
+.course-card .button:hover .button-layer{
+  left: 0;
+}
+.course-card .button button{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+}
