@@ -11,22 +11,27 @@
                 <li><a href="/allCourses">Courses</a></li>
             </ul>
             <!-- <app-search></app-search> -->
-            <section class="mobile_icon">
+            <section  (click)="displayInfo()" class="mobile_icon">
                 <i class="fa-solid fa-bars " id="burger_bars_icon"></i>
             </section>
-            <section class="profile_details">
+            <section (click)="displayInfo()"  *ngIf="userData!=null" class="profile_details">
               <i class="fa-solid fa-xmark" id="exit_icon"></i>
               <section class="personal_img">
               </section>
-              <app-user-profile [pageType]="notpage"></app-user-profile>
+              <app-user-profile (click)="displayInfo()"   [pageType]="notpage"></app-user-profile>
             </section>
-            <section class="personal_profile">
+            <section (click)="displayInfo()"   *ngIf="userData!=null" class="personal_profile">
                 <section class="personal_img">
                 </section>
                 <section class="personal_info">
-                    <p class="personal_name">Elkhatieb</p>
-                    <span class="personal_case">Student</span>
+                    <p class="personal_name"> {{userData.name}} </p>
+                    <span *ngIf="!userData.type" class="personal_case">Student</span>
+                    <span *ngIf="userData.type" class="personal_case">Instructor</span>
                 </section>
+            </section>
+            <section>
+              <div *ngIf="userData==null" class="border border-1 border-white">
+                <a  class="bj-button bj-button--sm bj-button--outline bj-button--inverted track" routerLink="login">Log in</a>               </div>
             </section>
         </section>
     </nav>

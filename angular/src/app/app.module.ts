@@ -17,6 +17,10 @@ import { FormsModule } from '@angular/forms';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { UserCoursesComponent } from './components/pages/user-courses/user-courses.component';
 import { CourseDetailsComponent } from './components/pages/course-details/course-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoggedInUserDataService } from './services/logged-in-user-data.service';
+
+
 
 @NgModule({
   declarations: [
@@ -34,15 +38,16 @@ import { CourseDetailsComponent } from './components/pages/course-details/course
     UserProfileComponent,
     UserCoursesComponent,
     CourseDetailsComponent,
-     ],
+      ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
    ],
-  providers: [],
+  providers: [LoggedInUserDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

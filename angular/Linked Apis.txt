@@ -1,0 +1,21 @@
+make localStoreage //done
+Registeration //done
+Login //done
+GetAllCategories //done
+GetuUserData //done
+
+getCommentsofUser
+updateUserdata
+enrollinCourse
+CoursesofStudent
+
+getAllcourses
+showcoursebyId coursedetailspage
+allcommentsinCourse coursedetailspage
+add newComment coursedetailspage
+
+studentsinCourse
+delteCourse
+updateCourseinfo
+
+

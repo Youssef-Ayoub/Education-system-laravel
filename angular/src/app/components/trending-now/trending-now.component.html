@@ -4,7 +4,7 @@
       <h2 class="h1 fs-4 m-0">Trending Courses</h2>
       <div class="button m-0">
         <div class="button-layer"></div>
-        <a routerLink="/login">All Courses</a>
+        <a routerLink="allCourses">All Courses</a>
       </div>
     </div>
     <div class="row">
@@ -17,7 +17,7 @@
           </li>
           <li
             class="nav-item"
-            *ngFor="let cat of catArray; let in = index"
+            *ngFor="let cat of catNames; let in = index"
             (click)="setActive(in)"
           >
             <a class="nav-link" [ngClass]="activTab == in ? 'activated' : ''">{{ cat }}</a>

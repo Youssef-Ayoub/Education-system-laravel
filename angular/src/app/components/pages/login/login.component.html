@@ -16,18 +16,18 @@
 
       <section class="main_form">
 
-        <form class="">
+        <form (submit)="submitForm(formData)">
 
             <h3 class="main_form_headnig">Login</h3>
 
               <section class="input_field">
                 <i class="fa-regular fa-envelope fa-bounce"></i>
-                <input type="email" class="" id="email" placeholder="Email" name="Email">
+                <input type="email" class="" id="email" placeholder="Email" name="Email" [(ngModel)]="formData.Email">
               </section>
 
               <section class="input_field">
                 <i class="fa-solid fa-lock fa-bounce"></i>
-                <input type="password" class="" id="password" placeholder="Password" name="Password">
+                <input type="password" class="" id="password" placeholder="Password" name="Password" [(ngModel)]="formData.Password">
               </section>
 
             <section class="personal_remember">

@@ -1,10 +1,11 @@
 <app-header></app-header>
 <app-landing></app-landing>
-<app-trending-now [catArray]="apiCategories" (onTabChange)="tabChange($event)"></app-trending-now>
+<app-trending-now [catNames]="categoriesArray" (onTabChange)="tabChange($event)"></app-trending-now>
 <section class="container-md " >
   <div class="row">
     <ng-container *ngFor="let course of coursesR1.slice(0, 10)">
-       <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" course.category == apiCategories[activatedTab] || noActiveTab || activatedTab==-1 " [title]="course.title" [description]="course.discription" [image]="course.image" [category]="course.category" [numOfStudents]="course.numOfStudents" [instructor]="course.instructor"></app-course-card>
+      <!-- // -->
+       <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" course.category ==  categoriesArray[activatedTab] || noActiveTab || activatedTab==-1 " [title]="course.title" [description]="course.discription" [image]="course.image" [category]="course.category" [numOfStudents]="course.numOfStudents" [instructor]="course.instructor"></app-course-card>
     </ng-container>
   </div>
 </section>
