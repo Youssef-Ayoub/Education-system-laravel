@@ -25,6 +25,7 @@ export class HomePageComponent implements OnInit {
    //  apiCategories: string[] =["Development" ,"Designing" , "Business" , "Social" , "Cokking" ];
    activatedTab:any;
    noActiveTab:boolean= true;
+   apiAllCourses : any;
    coursesR1:Array<course>;
   constructor( private myApi:MyDataService , private route: ActivatedRoute , private loggedUser:LoggedInUserDataService){
     this.coursesR1 =[
@@ -46,12 +47,16 @@ export class HomePageComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    console.log(this.user);
+    // console.log(this.user);
     this.myApi.getAllCategories().subscribe((data)=>{
       this.myApi=data;
        this.  categoriesArray = data.map((item: { name: any; }) => item.name);
-      console.log(this.categoriesArray);
+      // console.log(this.categoriesArray);
     })
+    // this.myApi.AllCourses().subscribe((courses)=>{
+    //    this.apiAllCourses = courses;
+    // }
+    // )
    }
    tabChange(i:number){
     this.noActiveTab=false;
