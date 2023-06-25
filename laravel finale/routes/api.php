@@ -51,8 +51,7 @@ Route::group(['prefix' => 'users'], function () {
 
 Route::get('categories', [CategoryController::class, 'index']);
 
-Route::group(function () {
-    Route::post('students/course', [EnrollmentController::class, 'showCourseStudents']);
-    Route::post('enroll', [EnrollmentController::class, 'enroll']);
-    Route::post('courses/student', [EnrollmentController::class, 'showStudentCourses']);
-});
+
+Route::post('students/course', [EnrollmentController::class, 'showCourseStudents']);
+Route::post('enroll', [EnrollmentController::class, 'enroll']);
+Route::post('courses/student', [EnrollmentController::class, 'showStudentCourses']);
