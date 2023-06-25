@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SummaryController;
 use App\Models\User as ModelsUser;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -55,3 +56,5 @@ Route::get('/setup', function () {
         }
     }
 });
+
+Route::get('data', [SummaryController::class, 'postMovie']);
