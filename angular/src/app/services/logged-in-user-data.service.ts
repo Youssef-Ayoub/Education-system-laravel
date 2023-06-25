@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +8,12 @@ import { Injectable } from '@angular/core';
 export class LoggedInUserDataService {
   loggedIn: boolean = false;
   private userData: any;
-  constructor() {
+  constructor(private http:HttpClient) {
     this.userData = this.getUserData();
+
+  }
+  ngOnInit() {
+
   }
   setUserData(data: any) {
     this.userData = data;
@@ -29,5 +35,13 @@ export class LoggedInUserDataService {
   updateUserData(newUserData: any) {
     this.userData = newUserData;
     this.setUserData(newUserData);
+  }
+  updateUser(userId: number, userData: any): Observable<any> {
+    const url = `http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/users/${userId}`;
+    return this.http.put<any>(url, userData);
+  }
+  userComments(userId:number): Observable<any>{
+    const url = `http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments/user/${userId}`;
+    return this.http.get<any>(url);
   }
 }

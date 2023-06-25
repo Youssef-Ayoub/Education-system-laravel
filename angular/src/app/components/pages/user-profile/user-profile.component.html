@@ -28,14 +28,16 @@
             class="rounded-circle img-fluid"
             style="width: 150px"
           />
-          <h5 class="my-3">{{ userData.name }}</h5>
           <p class="text-muted mb-1" *ngIf="userData.type">Instructor</p>
           <p class="text-muted mb-1" *ngIf="!userData.type">Student</p>
-          <p class="text-muted mb-4">{{ userData.email }}</p>
-          <a class="badge" style="background: floralwhite; color: gray" href="#"
-            >Edit</a
-          >
-        </div>
+          <div class="d-flex flex-column">
+            <input  class="bg-transparent text-center" [(ngModel)]="userData.name" [disabled]="isInputDisabled" />
+            <input class="bg-transparent text-center"  type="text" [(ngModel)]="userData.email" [disabled]="isInputDisabled" />
+            <!-- <input class="bg-transparent text-center"  type="password" [(ngModel)]="userData.password" [disabled]="isInputDisabled" /> -->
+          </div>
+          <a *ngIf="isInputDisabled" class="badge" style="background: floralwhite; color: gray" href="#" (click)="editProfile()">Edit</a>
+          <a *ngIf="!isInputDisabled" class="badge btn-danger" style="background: rgb(81, 57, 7); color: white" href="#" (click)="Update()">Save</a>
+         </div>
       </div>
     </div>
     <div class="col-lg-8 px-0">
@@ -54,8 +56,11 @@
             <div class="col-sm-3">
               <p class="mb-0">My Reviews</p>
             </div>
-            <div class="col-sm-9"></div>
-            <p><a href="#">2//waiting for its </a></p>
+            <ng-container *ngFor="let comment of userComments">
+            <div class="col-sm-9">
+                {{comment.comment}}
+            </div>
+            </ng-container>
           </div>
           <hr />
         </div>
@@ -96,7 +101,8 @@
       </span>
     </p>
   </div>
-
+     <a href="userProfile" class="btn-warning w-30 rounded rounded-3 text-center">Go to Profile</a>
+  
     <div class="align-self-center">
     <hr class="my-4">
     <a   (click)="logout()" class="bounce hov-pointer"><i class="fa-solid fa-right-from-bracket fa-2xl fa-beat-fade"></i> Log out </a>
