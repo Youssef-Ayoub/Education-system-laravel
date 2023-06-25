@@ -53,10 +53,11 @@ export class HomePageComponent implements OnInit {
        this.  categoriesArray = data.map((item: { name: any; }) => item.name);
       // console.log(this.categoriesArray);
     })
-    // this.myApi.AllCourses().subscribe((courses)=>{
-    //    this.apiAllCourses = courses;
-    // }
-    // )
+    this.myApi.AllCourses().subscribe((courses)=>{
+       this.apiAllCourses = courses;
+       console.log(this.apiAllCourses);
+    }
+    )
    }
    tabChange(i:number){
     this.noActiveTab=false;
