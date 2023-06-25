@@ -12,54 +12,84 @@
 
       <section class="main_form">
 
-        <form class="">
+        <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm.value)">
+          <h3 class="main_form_headnig">sign up</h3>
 
-            <h3 class="main_form_headnig">sign up</h3>
+          <section class="username">
+            <section class="input_field" [ngClass]="{ 'has-error': registerForm.controls['firstName'].invalid && registerForm.controls['firstName'].touched }">
+              <i class="fa-regular fa-user fa-bounce"></i>
+              <input type="text" formControlName="firstName" placeholder="First Name">
+              <span class="error-message" *ngIf="registerForm.controls['firstName'].invalid && registerForm.controls['firstName'].touched">
+                First Name is required
+              </span>
+            </section>
 
-            <section class="username">
-                  <section class="input_field">
-                    <i class="fa-regular fa-user fa-bounce"></i>
-                    <input type="text"  placeholder="First Name" name="First_Name">
-                  </section>
+            <section class="input_field" [ngClass]="{ 'has-error': registerForm.controls['lastName'].invalid && registerForm.controls['lastName'].touched }">
+              <i class="fa-regular fa-user fa-bounce"></i>
+              <input type="text" formControlName="lastName" placeholder="Last Name">
+              <span class="error-message" *ngIf="registerForm.controls['lastName'].invalid && registerForm.controls['lastName'].touched">
+                Last Name is required
+              </span>
+            </section>
+          </section>
 
-                  <section class="input_field">
-                    <i class="fa-regular fa-user fa-bounce"></i>
-                    <input type="text"  placeholder="Last Name" name="Last_Name">
-                  </section>
-              </section>
+          <section class="input_field" [ngClass]="{ 'has-error': registerForm.controls['email'].invalid && registerForm.controls['email'].touched }">
+            <i class="fa-regular fa-envelope fa-bounce"></i>
+            <input type="email" formControlName="email" placeholder="Email">
+            <span class="error-message" *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
+              Please enter a valid email address
+            </span>
+          </section>
 
-                <section class="input_field">
-                <i class="fa-regular fa-envelope fa-bounce"></i>
-                <input type="email" placeholder="Email" name="Email">
-              </section>
+          <section class="input_field" [ngClass]="{ 'has-error': registerForm.controls['password'].invalid && registerForm.controls['password'].touched }">
+            <i class="fa-solid fa-lock fa-bounce"></i>
+            <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" placeholder="Password">
+            <span class="error-message" *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+              Password must be at least 8 characters long
+            </span>
+            <i class="fa-solid fa-eye password-toggle eye" (click)="togglePasswordVisibility()"></i>
+          </section>
 
-                <section class="input_field">
-                <i class="fa-solid fa-lock fa-bounce"></i>
-                <input type="password" placeholder="Password" name="Password">
-              </section>
+          <section class="input_field" [ngClass]="{ 'has-error': registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched }">
+            <i class="fa-solid fa-lock fa-bounce"></i>
+            <input type="password" [type]="passwordVisible2 ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password">
+            <span class="error-message" *ngIf="registerForm.hasError('passwordMismatch') && registerForm.controls['confirmPassword'].touched">
+              Passwords do not match
+            </span>
+            <i class="fa-solid fa-eye password-toggle eye" (click)="togglePasswordVisibility2()"></i>
 
+          </section>
 
-                <section class="input_field">
-                <i class="fa-solid fa-lock fa-bounce"></i>
-                <input type="password" placeholder="Confirm Password" name="password_confirmation">
-              </section>
-
-              <section class="submittion">
-
-                <section class="select_dropdown_menu">
-                  <i class="fa-regular fa-user fa-bounce user"></i>
-                    <select name="person" id="">
-                      <option value="student">Student</option>
-                      <option value="doctor">Doctor</option>
-                    </select>
-                    <i class="fa-solid fa-angle-down down_arrow"></i>
-                </section>
-
-                  <button class="next_btn" type="submit">Next</button>
-              </section>
-
+          <section class="submittion">
+          <section class="select_dropdown_menu" [ngClass]="{ 'has-error': registerForm.controls['type'].invalid && registerForm.controls['type'].touched }">
+            <i class="fa-regular fa-user fa-bounce user"></i>
+            <select formControlName="type">
+              <option value="" disabled selected>AccType</option>
+              <option value="0">Student</option>
+              <option value="1">Instructor</option>
+            </select>
+            <i class="fa-solid fa-angle-down down_arrow"></i>
+          </section>
+          <section class="select_dropdown_menu" [ngClass]="{ 'has-error': registerForm.controls['gender'].invalid && registerForm.controls['gender'].touched }">
+            <i class="fa-regular fa-user fa-bounce user"></i>
+            <select formControlName="gender">
+              <option value="" disabled selected>Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <i class="fa-solid fa-angle-down down_arrow"></i>
+          </section>
+          <button class="next_btn" type="submit">Next</button>
+        </section>
+        <section class="d-flex justify-content-between px-1 " style="width: 72%;">
+          <span class="error-message" *ngIf="registerForm.controls['type'].invalid && registerForm.controls['type'].touched">
+            Account Type is required
+          </span>
+          <span class="error-message" *ngIf="registerForm.controls['gender'].invalid && registerForm.controls['gender'].touched">
+            Gender is required
+          </span>
+        </section>
         </form>
-
        </section>
 
     </section>

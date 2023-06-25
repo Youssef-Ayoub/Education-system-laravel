@@ -1,10 +1,21 @@
 <app-header></app-header>
 <app-landing></app-landing>
-<app-trending-now [catArray]="apiCategories" (onTabChange)="tabChange($event)"></app-trending-now>
+<section class="py-5 bg-white">
+  <div class="container">
+  <div class="row row-cols-2 justify-content-between mb-3">
+    <h2 class="h1 fs-4 m-0">Trending Courses</h2>
+    <div class="button m-0">
+      <div class="button-layer"></div>
+      <a routerLink="allCourses">All Courses</a>
+    </div>
+  </div>
+<app-trending-now [catNames]="categoriesArray" (onTabChange)="tabChange($event)"></app-trending-now>
+</div>
+</section>
 <section class="container-md " >
   <div class="row">
     <ng-container *ngFor="let course of coursesR1.slice(0, 10)">
-       <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" course.category == apiCategories[activatedTab] || noActiveTab || activatedTab==-1 " [title]="course.title" [description]="course.discription" [image]="course.image" [category]="course.category" [numOfStudents]="course.numOfStudents" [instructor]="course.instructor"></app-course-card>
+        <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" course.category ==  categoriesArray[activatedTab] || noActiveTab || activatedTab==-1 " [title]="course.title" [description]="course.discription" [image]="course.image" [category]="course.category" [numOfStudents]="course.numOfStudents" [instructor]="course.instructor"></app-course-card>
     </ng-container>
   </div>
 </section>
