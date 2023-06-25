@@ -1,56 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Material;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMaterialRequest;
-use App\Http\Requests\UpdateMaterialRequest;
+use App\Models\Material;
+use Illuminate\Http\Request;
 
 class MaterialController extends Controller
 {
-
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreMaterialRequest $request)
     {
-        //
+        $materials = Material::create($request->except($request->id));
+        return response()->json(['status' => 'created successfully ']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Material $material)
+    public function showByCourse(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Material $material)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateMaterialRequest $request, Material $material)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Material $material)
-    {
-        //
+        $validatedData = $request->validate([
+            'course_id' => 'required|integer',
+        ]);
+        $materials = Material::where('course_id', $request->course_id)->get();
+        return response()->json($materials);
     }
 }
