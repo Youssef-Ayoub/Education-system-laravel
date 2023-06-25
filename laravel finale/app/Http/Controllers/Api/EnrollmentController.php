@@ -37,4 +37,11 @@ class EnrollmentController extends Controller
         $courses = $user->courses()->get();
         return response()->json($courses);
     }
+
+    public function showCourseStudentsNumber(CourseRequest $request)
+    {
+        $course = Course::find($request->course_id);
+        $users = $course->users()->count();
+        return response()->json($users);
+    }
 }

@@ -16,5 +16,6 @@ class Material extends Model
         'week',
         'video_link',
         'svideo_link',
+        'video_title'
     ];
 }

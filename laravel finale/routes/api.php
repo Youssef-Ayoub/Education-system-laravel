@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\EnrollmentController;
+use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::group(['prefix' => 'courses'], function () {
     Route::delete('{id}', [CourseController::class, 'delete']);
     Route::put('{id}', [CourseController::class, 'update']);
     Route::get('{id}', [CourseController::class, 'show']);
+
 });
 
 Route::group(['prefix' => 'comments'], function () {
@@ -55,3 +57,10 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::post('students/course', [EnrollmentController::class, 'showCourseStudents']);
 Route::post('enroll', [EnrollmentController::class, 'enroll']);
 Route::post('courses/student', [EnrollmentController::class, 'showStudentCourses']);
+Route::post('students/course/number', [EnrollmentController::class, 'showCourseStudentsNumber']);
+
+
+Route::group(['prefix' => 'materials'], function () {
+    Route::post('', [MaterialController::class, 'store']);
+    Route::post('/course', [MaterialController::class, 'showByCourse']);
+});

@@ -11,7 +11,7 @@ class StoreMaterialRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreMaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'week' => ['required', 'numeric'],
+            'course_id' => ['required'],
+            'pdf' => ['required'],
+            'video_title' => ['required'],
+            'video_link' => ['required']
         ];
     }
 }
