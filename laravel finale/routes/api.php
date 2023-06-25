@@ -29,7 +29,7 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
 
 
-Route::group(['middleware' => ['auth:sanctum'], 'prefix' => 'courses'], function () {
+Route::group(['prefix' => 'courses'], function () {
     Route::get('', [CourseController::class, 'index']);
     Route::post('', [CourseController::class, 'store']);
     Route::delete('{id}', [CourseController::class, 'delete']);
