@@ -6,7 +6,7 @@ import { Component ,Input,OnInit , Output ,EventEmitter } from '@angular/core';
   styleUrls: ['./trending-now.component.scss']
 })
 export class TrendingNowComponent implements OnInit {
-@Input() catArray : string[] = ["Development" ,"Designing" , "Business" , "Social" ];
+@Input() catNames : string[] = ["Development" ,"Designing" , "Business" , "Social" ];
 @Output() onTabChange =new EventEmitter<number>();
  activTab:any;
   constructor(){

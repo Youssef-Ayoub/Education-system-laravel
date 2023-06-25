@@ -93,7 +93,7 @@ nav {
   background: rgba(239, 239, 239, 0.73);
   border-radius: 42px;
   padding: 10px 15px;
-  height: 100%;
+  height: fit-content;
   overflow: auto;
 }
 @media (min-width:1024px){
@@ -221,7 +221,7 @@ nav {
 @media (max-width: 430px) {
   .main_form .input_field input{
     width: 100%;
-    padding: 10px 10px 10px 55px !important;
+    padding: 10px 10px 10px 40px !important;
   }
   .main_form form .select_dropdown_menu{
     padding: 10px 40px 10px 55px !important;
