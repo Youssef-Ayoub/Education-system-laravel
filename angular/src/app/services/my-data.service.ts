@@ -25,7 +25,7 @@ export class MyDataService {
   AllCourses(){
       const headers = { 'Accept':'application/vnd.api+json' , 'Content-Type': 'application/vnd.api+json' }
       console.log(headers);
-    return this.http.get<any>('http://localhost/Education-system-laravel/laravel%20test/public/api/courses' , {headers} )
+    return this.http.get<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses' , {headers} )
   }
   AllComments(){
     return this.http.get<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments/course/3' )
