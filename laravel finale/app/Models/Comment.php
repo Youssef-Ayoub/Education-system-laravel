@@ -16,4 +16,9 @@ class Comment extends Model
         'rating',
         'sentiment'
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

@@ -21,4 +21,9 @@ class Course extends Model
         'category_id',
         'instructor_name'
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
