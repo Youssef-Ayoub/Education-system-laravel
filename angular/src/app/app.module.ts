@@ -18,9 +18,8 @@ import { UserProfileComponent } from './components/pages/user-profile/user-profi
 import { UserCoursesComponent } from './components/pages/user-courses/user-courses.component';
 import { CourseDetailsComponent } from './components/pages/course-details/course-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { LoggedInUserDataService } from './services/logged-in-user-data.service';
-
-
 
 @NgModule({
   declarations: [
@@ -45,8 +44,9 @@ import { LoggedInUserDataService } from './services/logged-in-user-data.service'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-   ],
+    ReactiveFormsModule,
+    NgxYoutubePlayerModule.forRoot()
+    ],
   providers: [LoggedInUserDataService],
   bootstrap: [AppComponent]
 })

@@ -8,9 +8,12 @@
     <!-- <div class="logo p-2 py-3 col-md-6 "><a class="badge-dark" routerLink="">Course Pilot</a></div> -->
 
     <div class=" col-md-3 d-flex justify-content-between align-items-center mx-2 text-center  p-2 py-3 contact_bt">
-            <a routerLink="" >
+            <a  *ngIf=" viewtype != 'All Courses'" [routerLink]="'/userProfile'" >
               <i class="fa-sharp fa-solid fa-arrow-left fa-bounce" style="color: #ffffff;"></i>
               Back</a>
+              <a  *ngIf=" viewtype == 'All Courses'" [routerLink]="'/'" >
+                <i class="fa-sharp fa-solid fa-arrow-left fa-bounce" style="color: #ffffff;"></i>
+                Back</a>
     </div>
 
    </div>
@@ -24,7 +27,7 @@
       <ng-container *ngFor="let course of Courses">
         <!-- || course.instructor.toLowerCase().includes(searchV) -->
           <app-course-card  class="col-xxl-3 col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" (getCategoryNameById(course.category_id ) == categoriesArray[activatedTab] ||noActiveTab || activatedTab==-1) && (searchV ==='' || course.name.toLowerCase().includes(searchV) || course.description.toLowerCase().includes(searchV) )"
-          [title]="course.name" [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="course.id" [instructor]="'BADR'" ></app-course-card>
+         [id]="course.id"  [title]="course.name" [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="course.id" [instructor]="'BADR'" ></app-course-card>
       </ng-container>
     </div>
   </section>

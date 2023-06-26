@@ -1,5 +1,5 @@
-<section>
-  <div class="col-md-12 d-flex justify-content-between border-right bg-gradiantt">
+<section class="row">
+  <div class="row d-flex justify-content-around border-right bg-gradiantt">
     <div class="logo p-2 py-3 "><a class="badge-dark" href="home_page.html">CoursePilot</a></div>
 
     <div class="d-flex justify-content-between align-items-center mx-2 text-center  p-2 py-3 contact_bt">
@@ -9,6 +9,30 @@
     </div>
 
    </div>
+   <section class="row" style="height: 900px;">
+    <aside class="col-4 bg-gradient btn-group-vertical py-3 overflow-auto" style="height: 80vh;">
+      <a (click)=" videoId='plSt9be4fC4' " href="" class="btn btn-sm">Content1</a>
+      <a (click)=" videoId='TIxtpEli6YM' "  href="" class="btn btn-sm">Content2</a>
+      <a (click)=" videoId='dcoiUJrdsP0' "  href="" class="btn btn-sm">Content3</a>
+      <a (click)=" videoId='wgD_XDbapjs' "  href="" class="btn btn-sm">Content4</a>
+      <a (click)=" videoId='fpDgrktYb5M' "  href="" class="btn btn-sm">Content5</a>
+      <a (click)=" videoId='plSt9be4fC4' "  href="" class="btn btn-sm">Content6</a>
+      <a (click)=" videoId='FHrpR_GrKp0' "  href="" class="btn btn-sm">Content7</a>
+      <a (click)=" videoId='plSt9be4fC4' "  href="" class="btn btn-sm">Content8</a>
+      <a (click)=" videoId='wgD_XDbapjs' "  href="" class="btn btn-sm">Content9</a>
+      <a (click)=" videoId='FHrpR_GrKp0' "  href="" class="btn btn-sm">Content10</a>
+      <a (click)=" videoId='TIxtpEli6YM' "  href="" class="btn btn-sm">Content11</a>
+      <a (click)=" videoId='fpDgrktYb5M' "  href="" class="btn btn-sm">Content12</a>
+      <a (click)=" videoId='dcoiUJrdsP0' "  href="" class="btn btn-sm">Content13</a>
+    </aside>
+    <div class="col-8 p-3">
+       <iframe width="580" height="370" class="rounded rounded-5 shadow" [src]="getVideoUrl(videoId)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
+
+   </section>
+<!--    
       <div class="row contact1 mx-0 py-4">
         <div class="col-lg-4 px-0 align-self-start " >
           <div class=" bg card mb-4 mx-2">
@@ -48,6 +72,6 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
  </section>
  <app-footer></app-footer>

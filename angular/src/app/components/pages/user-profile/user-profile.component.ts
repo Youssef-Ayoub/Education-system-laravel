@@ -2,6 +2,7 @@ import { Component ,Input,OnInit} from '@angular/core';
 import { LoggedInUserDataService } from 'src/app/services/logged-in-user-data.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MyDataService } from 'src/app/services/my-data.service';
 
 
 
@@ -14,10 +15,11 @@ export class UserProfileComponent implements OnInit {
   page:boolean=true;
   userData:any;
   userComments:any;
+  numOfCourses:number=0;
   isInputDisabled: boolean = true; // Set it to `true` initially
 
   @Input() pageType:boolean=true;
-  constructor(private loggedUser:LoggedInUserDataService , private router:Router){
+  constructor( private myApi:MyDataService, private loggedUser:LoggedInUserDataService , private router:Router){
     this.pageType=this.page;
     if(sessionStorage.getItem('loggedIn'))
     {
@@ -33,7 +35,7 @@ export class UserProfileComponent implements OnInit {
   }
   editProfile(): void {
     this.isInputDisabled=false;
-   } 
+   }
   Update(): void {
     this.loggedUser.updateUser(this.userData.id, this.userData).subscribe(
       (response) => {
@@ -59,7 +61,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.loggedUser.userComments(this.userData.id).subscribe(
       (response) => {
-        console.log(response.length);
+        // console.log(response.length);
         this.loggedUser = response;
         this.userComments=response;
         },
@@ -68,5 +70,18 @@ export class UserProfileComponent implements OnInit {
         // Handle error or display error message
       }
     );
+    this.getUserCourses();
   }
+  getUserCourses(): void {
+    this.myApi.userCourses(this.userData.id).subscribe(
+      (response) => {
+        this.numOfCourses = response.length;
+        console.log(response)
+        },
+      (error) => {
+        console.error('errror is ' , error)
+        console.log('param is ' , this.userData.id);
+      }
+    );
+}
 }
