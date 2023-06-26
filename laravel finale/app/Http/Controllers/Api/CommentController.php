@@ -12,8 +12,21 @@ class CommentController extends Controller
 {
     public function showByCourse($course_id)
     {
-        $comments = Comment::where('course_id', $course_id)->get();
-        return response()->json($comments);
+        $comments = Comment::with('course')->get();
+        $commentData = $comments->map(function ($comment) {
+            return [
+                "id" => $comment->id,
+                "user_id" => $comment->user_id,
+                "course_id" => $comment->course_id,
+                'course_name' => $comment->course->name,
+                "comment" => $comment->comment,
+                "rating" => $comment->rating
+            ];
+        });
+        return response()->json($commentData);
+
+        // $comments = Comment::where('course_id', $course_id)->get();
+        // return response()->json($comments);
     }
 
     public function store(StoreCommentRequest $request)

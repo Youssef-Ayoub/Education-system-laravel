@@ -23,7 +23,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'unique:users', 'max:255'],
+            'email' => ['required', 'string', 'max:255'],
         ];
     }
 }

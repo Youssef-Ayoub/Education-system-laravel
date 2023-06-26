@@ -23,7 +23,7 @@ class MaterialController extends Controller
             'week' => $request->week,
             'pdf' => $request->pdf,
             'spdf' => $request->spdf,
-            'video_link' => $request->video_link,
+            'video_link' => $videoId,
             'svideo_link' => $response,
             'video_title' => $request->video_title,
         ]);
