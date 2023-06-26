@@ -19,7 +19,8 @@ export class UserProfileComponent implements OnInit {
   isInputDisabled: boolean = true; // Set it to `true` initially
 
   @Input() pageType:boolean=true;
-  constructor( private myApi:MyDataService, private loggedUser:LoggedInUserDataService , private router:Router){
+
+  constructor( private myApi:MyDataService, private loggedUser:LoggedInUserDataService , private user:LoggedInUserDataService , private router:Router){
     this.pageType=this.page;
     if(sessionStorage.getItem('loggedIn'))
     {
@@ -33,10 +34,9 @@ export class UserProfileComponent implements OnInit {
       this.router.navigate(['login']);
     }
   }
-  editProfile(): void {
-    this.isInputDisabled=false;
-   }
-  Update(): void {
+
+  private EditData() {
+
     this.loggedUser.updateUser(this.userData.id, this.userData).subscribe(
       (response) => {
         alert('User data updated');
@@ -49,6 +49,22 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+  private GetComments(){
+    this.user.userComments(this.userData.id).subscribe(
+      (response) => {
+        // console.log(response.length);
+        this.user = response;
+        this.userComments=response;
+        },
+      (error) => {
+        alert('Error');
+        // Handle error or display error message
+      }
+    );
+  }
+  editProfile(): void {
+    this.isInputDisabled=false;
+   }
   //  getUserComments(){
   //   return this.userComments.length;
   // }
@@ -59,17 +75,6 @@ export class UserProfileComponent implements OnInit {
     console.log("Logged Out");
   }
   ngOnInit(): void {
-    this.loggedUser.userComments(this.userData.id).subscribe(
-      (response) => {
-        // console.log(response.length);
-        this.loggedUser = response;
-        this.userComments=response;
-        },
-      (error) => {
-        alert('Error');
-        // Handle error or display error message
-      }
-    );
     this.getUserCourses();
   }
   getUserCourses(): void {
@@ -83,5 +88,11 @@ export class UserProfileComponent implements OnInit {
         console.log('param is ' , this.userData.id);
       }
     );
+}
+Update(): void {
+  this.EditData();
+}
+Comments():void{
+  this.GetComments();
 }
 }

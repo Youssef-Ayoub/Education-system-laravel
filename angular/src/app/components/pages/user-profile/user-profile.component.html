@@ -36,7 +36,7 @@
             <!-- <input class="bg-transparent text-center"  type="password" [(ngModel)]="userData.password" [disabled]="isInputDisabled" /> -->
           </div>
           <a *ngIf="isInputDisabled" class="badge" style="background: floralwhite; color: gray" href="#" (click)="editProfile()">Edit</a>
-          <a *ngIf="!isInputDisabled" class="badge btn-danger" style="background: rgb(81, 57, 7); color: white" href="#" (click)="Update()">Save</a>
+          <a *ngIf="!isInputDisabled" class="badge btn-danger" style="background: rgb(81, 57, 7); color: white" href="#" (click)="this.Update()">Save</a>
          </div>
       </div>
     </div>
@@ -55,6 +55,7 @@
           <div *ngIf="!userData.type" class="flex-row">
             <div class="col-sm-3">
               <p class="mb-0">My Reviews</p>
+              <a h (click)="Comments()" class="btn btn-sm">Reviwes</a>
             </div>
             <ng-container *ngFor="let comment of userComments">
             <div class="col-sm-9">
