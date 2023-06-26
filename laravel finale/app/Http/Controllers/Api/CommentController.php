@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Models\Comment;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class CommentController extends Controller
@@ -25,8 +27,8 @@ class CommentController extends Controller
         });
         return response()->json($commentData);
 
-        // $comments = Comment::where('course_id', $course_id)->get();
-        // return response()->json($comments);
+        $comments = Comment::where('course_id', $course_id)->get();
+        return response()->json($comments);
     }
 
     public function store(StoreCommentRequest $request)
