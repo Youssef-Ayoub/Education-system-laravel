@@ -13,6 +13,7 @@ class Comment extends Model
         'user_id',
         'course_id',
         'comment',
-        'rating'
+        'rating',
+        'sentiment'
     ];
 }

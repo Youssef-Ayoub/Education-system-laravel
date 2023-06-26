@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class SummaryController extends Controller
 {
-    public function getMovie(Request $request)
+    public function getMovie($text)
     {
-        $response = Http::get('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/courses/4');
-        // $jsondata = $response->json();
+        $link = 'http://127.0.0.1:5726/predict/' . $text;
+        $response = Http::get($link);
+        $jsondata = $response->json();
         return $response;
     }
 

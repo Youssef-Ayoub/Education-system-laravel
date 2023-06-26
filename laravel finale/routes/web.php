@@ -23,38 +23,38 @@ Route::get('/', function () {
 });
 
 
-Route::get('/setup', function () {
-    $credentials = [
-        'email' => 'admin@admin.com',
-        'password' => 'password'
-    ];
+// Route::get('/setup', function () {
+//     $credentials = [
+//         'email' => 'admin@admin.com',
+//         'password' => 'password'
+//     ];
 
-    if (!Auth::attempt($credentials)) {
-        $user = new User();
+//     if (!Auth::attempt($credentials)) {
+//         $user = new User();
 
-        $user->name = 'Admin';
-        $user->email = $credentials['email'];
-        $user->password = Hash::make($credentials['password']);
-        $user->type = 2;
-        $user->gender = 'male';
+//         $user->name = 'Admin';
+//         $user->email = $credentials['email'];
+//         $user->password = Hash::make($credentials['password']);
+//         $user->type = 2;
+//         $user->gender = 'male';
 
-        $user->save();
+//         $user->save();
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+//         if (Auth::attempt($credentials)) {
+//             $user = Auth::user();
 
 
-            $adminToken = $user->createToken('adminToken', ['ALL']);
-            $profToken = $user->createToken('profToken', ['create', 'update', 'delete']);
-            $userToken = $user->createToken('userToken', ['view']);
+//             $adminToken = $user->createToken('adminToken', ['ALL']);
+//             $profToken = $user->createToken('profToken', ['create', 'update', 'delete']);
+//             $userToken = $user->createToken('userToken', ['view']);
 
-            return [
-                'admin' => $adminToken->plainTextToken,
-                'professor' => $profToken->plainTextToken,
-                'user' => $userToken->plainTextToken
-            ];
-        }
-    }
-});
+//             return [
+//                 'admin' => $adminToken->plainTextToken,
+//                 'professor' => $profToken->plainTextToken,
+//                 'user' => $userToken->plainTextToken
+//             ];
+//         }
+//     }
+// });
 
-Route::get('data', [SummaryController::class, 'postMovie']);
+Route::get('data/{text}', [SummaryController::class, 'getMovie']);

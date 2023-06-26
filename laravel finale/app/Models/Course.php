@@ -18,6 +18,7 @@ class Course extends Model
         'name',
         'cover',
         'description',
-        'category_id'
+        'category_id',
+        'instructor_name'
     ];
 }

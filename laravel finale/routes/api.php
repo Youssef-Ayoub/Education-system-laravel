@@ -36,7 +36,6 @@ Route::group(['prefix' => 'courses'], function () {
     Route::delete('{id}', [CourseController::class, 'delete']);
     Route::put('{id}', [CourseController::class, 'update']);
     Route::get('{id}', [CourseController::class, 'show']);
-
 });
 
 Route::group(['prefix' => 'comments'], function () {

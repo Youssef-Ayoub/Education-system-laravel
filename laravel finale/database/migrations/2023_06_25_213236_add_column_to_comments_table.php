@@ -6,22 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+
+    public function up()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->string('instructor_name');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->integer('sentiment')->nullable();
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
+        Schema::table('comments', function (Blueprint $table) {
             //
         });
     }
