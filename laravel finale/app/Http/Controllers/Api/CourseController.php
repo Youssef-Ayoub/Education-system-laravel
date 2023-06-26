@@ -14,7 +14,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::withCount('users')->get();
         return response()->json($courses);
     }
 
