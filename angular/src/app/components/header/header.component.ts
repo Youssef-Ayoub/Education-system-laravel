@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
       if (storedData){
         this.userData = JSON.parse(storedData);
       }
-      console.log("userData is in session Storeage :",this.userData.name);
+      console.log("userData is in session Storeage :",this.userData.name , this.userData.id);
     }
   }
   ngOnInit() {

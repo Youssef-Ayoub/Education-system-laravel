@@ -15,7 +15,7 @@
 <section class="container-md " >
   <div class="row">
     <ng-container *ngFor="let course of apiAllCourses">
-        <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" getCategoryNameById(course.category_id) ==  categoriesNames[activatedTab] || noActiveTab || activatedTab==-1 " [title]="course.name" [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="(course.id)" [instructor]="'Yousef'"></app-course-card>
+        <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" getCategoryNameById(course.category_id) ==  categoriesNames[activatedTab] || noActiveTab || activatedTab==-1 " [id]="course.id" [title]="course.name" [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="(course.id)" [instructor]="'Yousef'"></app-course-card>
     </ng-container>
   </div>
 </section>

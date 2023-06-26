@@ -4,14 +4,14 @@ Login //done
 GetAllCategories //done
 GetuUserData //done
 
-getCommentsofUser
-updateUserdata
-enrollinCourse
-CoursesofStudent
+getCommentsofUser //done
+updateUserdata  //Done
+enrollinCourse //done
+CoursesofStudent  //done
 
-getAllcourses
+getAllcourses  //done
 showcoursebyId coursedetailspage
-allcommentsinCourse coursedetailspage
+allcommentsinCourse coursedetailspage  //Done
 add newComment coursedetailspage
 
 studentsinCourse

@@ -1,5 +1,6 @@
 import { Component ,OnInit } from '@angular/core';
 import { MyDataService } from '../../../services/my-data.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-course-details',
@@ -7,8 +8,9 @@ import { MyDataService } from '../../../services/my-data.service';
   styleUrls: ['./course-details.component.scss']
 })
 export class CourseDetailsComponent implements OnInit {
+  
   courseDeatils:any={id:4 ,title:'Selected topics', discription:'Selected topics course is here' , instructor:'dr.abdelwahab' , image:'./assets/images/Courses/c1.jpg', category:'Development' ,numOfStudents:10}
-//api/6/conent
+  videoId = 'JepMpjhkt-4';
   content:any=[
     {week:1 , pdf:"PathPDF" , video:"Chapter1Vid1"} ,
     {week:1 , pdf:"Chapter1lec2" , video:"Chapter1Vid2"} ,
@@ -30,9 +32,14 @@ export class CourseDetailsComponent implements OnInit {
   //   {userName:"Abdo" , Comment:"momtazzz"}
   // ]
 
-  constructor(private MyDataService:MyDataService){
+  constructor(private MyDataService:MyDataService , public sanitizer:DomSanitizer){
 
   }
+  getVideoUrl(videoId: string): SafeResourceUrl {
+    const url = `https://www.youtube.com/embed/${videoId}`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+ 
   ngOnInit(): void {
     this.MyDataService.AllComments().subscribe((data)=>{
       this.courseReviews=data;

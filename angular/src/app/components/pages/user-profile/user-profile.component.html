@@ -48,7 +48,7 @@
               <p class="mb-0">My Courses</p>
             </div>
             <div class="col-sm-9">
-              <p><a href="#">3 //waiting for its Api</a></p>
+              <p><a [routerLink]="['/userCourses']">{{numOfCourses}}</a></p>
             </div>
           </div>
           <hr />
@@ -102,7 +102,7 @@
     </p>
   </div>
      <a href="userProfile" class="btn-warning w-30 rounded rounded-3 text-center">Go to Profile</a>
-  
+
     <div class="align-self-center">
     <hr class="my-4">
     <a   (click)="logout()" class="bounce hov-pointer"><i class="fa-solid fa-right-from-bracket fa-2xl fa-beat-fade"></i> Log out </a>
