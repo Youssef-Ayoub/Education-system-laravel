@@ -36,7 +36,7 @@ export class LoggedInUserDataService {
     this.userData = newUserData;
     this.setUserData(newUserData);
   }
-  updateUser(userId: number, userData: any): Observable<any> {
+  updateUser(userId: number, userData: any){
     const url = `http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/users/${userId}`;
     return this.http.put<any>(url, userData);
   }

@@ -25,11 +25,13 @@ export class UserCoursesComponent implements OnInit {
     }
   }
 
+
   ngOnInit(): void {
 
   console.log('user id before GITTING',  this.userId);
   this.getUserCourses();
   }
+
   getUserCourses(): void {
     this.myApi.userCourses(this.userId).subscribe(
       (response) => {
