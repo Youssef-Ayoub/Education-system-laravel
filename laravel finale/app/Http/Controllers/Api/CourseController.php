@@ -19,19 +19,23 @@ class CourseController extends Controller
         $feedback = Course::leftJoin('comments', 'courses.id', '=', 'comments.course_id')
             ->leftJoin('course_user', 'courses.id', '=', 'course_user.course_id')
             ->leftJoin('users', 'course_user.user_id', '=', 'users.id')
+            ->join('categories', 'courses.category_id', '=', 'categories.id')
             ->select(
                 'courses.id',
                 'courses.name',
                 'courses.description',
                 'courses.cover',
                 'courses.instructor_name',
+                'categories.id as category_id',
+                'categories.name as category_name',
                 DB::raw('count(distinct users.id) as user_count'),
                 DB::raw('count(case when comments.sentiment = "1" then 1 end) as positive_count'),
                 DB::raw('count(case when comments.sentiment = "0" then 1 end) as neutral_count'),
                 DB::raw('count(case when comments.sentiment = "-1" then 1 end) as negative_count')
             )
-            ->groupBy('courses.id', 'courses.name', 'courses.description', 'courses.cover', 'courses.instructor_name')
+            ->groupBy('courses.id', 'courses.name', 'courses.description', 'courses.cover', 'courses.instructor_name', 'categories.id', 'categories.name')
             ->get();
+
         return response()->json($feedback);
     }
 
@@ -104,7 +108,27 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        $course = Course::find($id);
-        return response()->json($course);
+        $feedback = Course::where('courses.id', '=', $id)
+            ->leftJoin('comments', 'courses.id', '=', 'comments.course_id')
+            ->leftJoin('course_user', 'courses.id', '=', 'course_user.course_id')
+            ->leftJoin('users', 'course_user.user_id', '=', 'users.id')
+            ->join('categories', 'courses.category_id', '=', 'categories.id')
+            ->select(
+                'courses.id',
+                'courses.name',
+                'courses.description',
+                'courses.cover',
+                'courses.instructor_name',
+                'categories.id as category_id',
+                'categories.name as category_name',
+                DB::raw('count(distinct users.id) as user_count'),
+                DB::raw('count(case when comments.sentiment = "1" then 1 end) as positive_count'),
+                DB::raw('count(case when comments.sentiment = "0" then 1 end) as neutral_count'),
+                DB::raw('count(case when comments.sentiment = "-1" then 1 end) as negative_count')
+            )
+            ->groupBy('courses.id', 'courses.name', 'courses.description', 'courses.cover', 'courses.instructor_name', 'categories.id', 'categories.name')
+            ->get();
+
+        return response()->json($feedback);
     }
 }
