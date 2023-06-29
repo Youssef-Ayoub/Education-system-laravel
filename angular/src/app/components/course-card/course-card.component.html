@@ -4,7 +4,7 @@
     <i class='bx bx-shopping-bag'></i>
   </div> -->
   <div class="main-images">
-    <img  src={{image}} alt="courseImage">
+    <img  src={{src+image}} alt="courseImage">
     <div class="overlay">
         <span class="head badge" style="background: floralwhite;">{{category}}</span>
     </div>
@@ -37,9 +37,9 @@
         </div>
 
       </div>
-      <div class="button">
+      <div *ngIf="showEnroll" class="button">
         <div class="button-layer"></div>
-        <button (click)="enroll()">Enroll now</button>
+        <button  (click)="enroll()">Enroll now</button>
       </div>
   </div>
 

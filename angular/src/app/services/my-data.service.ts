@@ -57,5 +57,7 @@ export class MyDataService {
   AllComments(){
     return this.http.get<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments/course/3' )
   }
-
+  CreateCourse(courseData:any){
+    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses', courseData);
+  }
 }

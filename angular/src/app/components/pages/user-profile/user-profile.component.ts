@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   userData:any;
   userComments:any;
   numOfCourses:number=0;
-  isInputDisabled: boolean = true; // Set it to `true` initially
+  isInputDisabled: boolean = true;  
 
   @Input() pageType:boolean=true;
 

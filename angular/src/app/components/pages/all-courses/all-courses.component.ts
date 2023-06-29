@@ -13,13 +13,17 @@ export class AllCoursesComponent implements OnInit {
   categories:any={};
   @Input() viewtype:string="All Courses";
   @Input() Courses:any={};
+  enroll:boolean=true;
   activatedTab:any;
   noActiveTab:boolean= true;
   constructor(private myApi:MyDataService ){
-    
+
   }
 
   ngOnInit(): void {
+    if(this.viewtype!='All Courses'){
+      this.enroll=false;
+    }
     this.myApi.getAllCategories().subscribe((data)=>{
       this.myApi=data;
        this.  categoriesArray = data.map((item: { name: any; }) => item.name);

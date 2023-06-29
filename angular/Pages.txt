@@ -17,7 +17,7 @@
 ///// Proffesor Pages////////////
 5- My Profile  //done
 6- My Courses  //done
-7- Create Coures
+7- Create Coures //done
 8- upload/delete/modify content
 
 ////Course pages //////

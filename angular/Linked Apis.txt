@@ -6,13 +6,14 @@ GetuUserData //done
 
 getCommentsofUser //done
 updateUserdata  //Done
-enrollinCourse //done
+enrollinCourse //done check if it is already enrolled ?
 CoursesofStudent  //done
 
 getAllcourses  //done
 showcoursebyId coursedetailspage
 allcommentsinCourse coursedetailspage  //Done
 add newComment coursedetailspage
+create Course    // done where is Instructor Id ?
 
 studentsinCourse
 delteCourse

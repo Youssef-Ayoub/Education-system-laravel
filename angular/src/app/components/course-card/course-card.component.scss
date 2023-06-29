@@ -4,6 +4,7 @@
   position: relative;
   max-width: 400px;
   width: 100%;
+  height: 500px;
   border-radius: 25px;
   padding: 10px;
   background: #fff;
@@ -32,7 +33,7 @@
 }
 .course-card .main-images{
   position: relative;
-  height: 50%;
+  height: 45%;
 }
 .course-card .main-images img{
    height: 100%;
@@ -61,7 +62,7 @@
     clip-path: circle(70% at 0 0);
 }
 .course-body{
-    height: 50%;
+    height: 55%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -78,7 +79,7 @@
   margin-block: 20px;
 }
 .course-card .course-details p{
-  height: 90%;
+  height: 85%;
   font-size: 12px;
   font-weight: 400;
   color: #333;
@@ -117,7 +118,7 @@
   height: 50px;
   width: 100%;
   border-radius: 25px;
-  margin-top: 30px;
+  margin-top: 10px;
   overflow: hidden;
 }
 .course-card .button .button-layer{

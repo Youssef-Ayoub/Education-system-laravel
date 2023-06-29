@@ -9,6 +9,7 @@ import { MyDataService } from 'src/app/services/my-data.service';
   styleUrls: ['./course-card.component.scss']
 })
 export class CourseCardComponent implements OnInit {
+  src:string="../../../assets/images/Courses/";
   @Input() course: boolean = true
   @Input() title: string = 'Computer Network'
   @Input() id:any;
@@ -17,6 +18,7 @@ export class CourseCardComponent implements OnInit {
   @Input() category: string = "Development";
   @Input() instructor: string = "Ahmed Badr";
   @Input() image: string = "./assets/images/first pic.jpg";
+  @Input() showEnroll:boolean=true;
   userData:any={};
 
   // articalContent:articleCard={

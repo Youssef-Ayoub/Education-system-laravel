@@ -20,6 +20,7 @@ import { CourseDetailsComponent } from './components/pages/course-details/course
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { LoggedInUserDataService } from './services/logged-in-user-data.service';
+import { CreateCourseComponent } from './components/pages/create-course/create-course.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LoggedInUserDataService } from './services/logged-in-user-data.service'
     UserProfileComponent,
     UserCoursesComponent,
     CourseDetailsComponent,
+    CreateCourseComponent,
       ],
 
   imports: [

@@ -8,9 +8,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./course-details.component.scss']
 })
 export class CourseDetailsComponent implements OnInit {
-  
+
   courseDeatils:any={id:4 ,title:'Selected topics', discription:'Selected topics course is here' , instructor:'dr.abdelwahab' , image:'./assets/images/Courses/c1.jpg', category:'Development' ,numOfStudents:10}
-  videoId = 'JepMpjhkt-4';
+
   content:any=[
     {week:1 , pdf:"PathPDF" , video:"Chapter1Vid1"} ,
     {week:1 , pdf:"Chapter1lec2" , video:"Chapter1Vid2"} ,
@@ -35,11 +35,11 @@ export class CourseDetailsComponent implements OnInit {
   constructor(private MyDataService:MyDataService , public sanitizer:DomSanitizer){
 
   }
-  getVideoUrl(videoId: string): SafeResourceUrl {
-    const url = `https://www.youtube.com/embed/${videoId}`;
+
+  setSrc(vidID: string): SafeResourceUrl {
+    const url = 'https://www.youtube.com/embed/' + vidID;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
- 
   ngOnInit(): void {
     this.MyDataService.AllComments().subscribe((data)=>{
       this.courseReviews=data;

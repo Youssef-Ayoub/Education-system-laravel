@@ -1,0 +1,108 @@
+<div class="row d-flex justify-content-around border-right bg-gradiantt">
+  <div class="logo p-2 py-3 "><a class="badge-dark" href="home_page.html">CoursePilot</a></div>
+
+  <div class="d-flex justify-content-between align-items-center mx-2 text-center  p-2 py-3 contact_bt">
+          <a href="" >
+            <i class="fa-sharp fa-solid fa-arrow-left fa-bounce" style="color: #ffffff;"></i>
+            Back</a>
+  </div>
+
+ </div>
+ <div class="contact1">
+  <div class="container-contact1">
+    <form [formGroup]="form" class="contact1-form validate-form col-12">
+      <!-- Category -->
+      <div
+        class="wrap-input1 validate-input"
+        data-validate="Category is Required"
+      >
+        <select
+          class="input1"
+          placeholder="Category"
+          formControlName="category"
+        >
+          <option disabled [selected]="true">Choose Category</option>
+          <option>CS</option>
+          <option>Bs</option>
+          <option>DS</option>
+        </select>
+        <span class="shadow-input1"></span>
+        <div
+        *ngIf="form.controls['category'].invalid && form.controls['category'].touched"
+        class="text-danger"
+        >
+          Category is required.
+        </div>
+      </div>
+
+      <!-- Course Name -->
+      <div
+        class="wrap-input1 validate-input"
+        data-validate="Course Name is Required"
+      >
+        <input
+          class="input1"
+          placeholder="Course Name"
+          formControlName="name"
+        />
+        <span class="shadow-input1"></span>
+        <div
+        *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+
+          class="text-danger"
+        >
+          Course Name is required.
+        </div>
+      </div>
+
+      <!-- Course Image -->
+      <div
+        class="wrap-input1 validate-input"
+        data-validate="Course Image is Required"
+      >
+        <input
+          type="file"
+          id="img"
+          name="img"
+          accept="image/*"
+          formControlName="cover"
+        />
+        <span class="shadow-input1"></span>
+        <div
+          *ngIf="form.controls['cover'].invalid && form.controls['cover'].touched"
+          class="text-danger"
+        >
+          Course Image is required.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div
+        class="wrap-input1 validate-input"
+        data-validate="Course Description is Required"
+      >
+        <textarea
+          class="input1"
+          name="Description"
+          placeholder="Course Description"
+          formControlName="description"
+        ></textarea>
+        <span class="shadow-input1"></span>
+        <div
+           *ngIf="form.controls['description'].invalid && form.controls['description'].touched"
+           class="text-danger"
+        >
+          Course Description is required.
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="contact1-form-btn" [disabled]="form.invalid" (click)="print()">
+          <span>
+            Create
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
