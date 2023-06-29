@@ -47,6 +47,7 @@ class CourseController extends Controller
                 'description' => $request->description,
                 'cover' => $request->cover,
                 'category_id' => $categoryId,
+                'instructor_name' => $request->instructor_name
             ]);
         } else {
             $category = Category::create(['name' => $request->category]);
@@ -55,6 +56,7 @@ class CourseController extends Controller
                 'description' => $request->description,
                 'cover' => $request->cover,
                 'category_id' => $category->id,
+                'instructor_name' => $request->instructor_name
             ]);
         }
 
