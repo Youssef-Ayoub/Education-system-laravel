@@ -22,7 +22,8 @@
 
 ////Course pages //////
 10- Course Details with Contents and ReviewBox (Result of Machine Learning models ) //done
-11-Content Details (PDF , Video , PPT)
+11-Content Details (PDF , Video , PPT) //done
+
 
 12-chatbot
 
