@@ -13,7 +13,7 @@ import { Observable, count, map } from 'rxjs';
 export class HomePageComponent implements OnInit {
    user:any=sessionStorage.getItem('userData');
    categoriesNames:any=["Development" ,"Designing" , "Business" , "Social" , "Cokking" ];
-   categoriesData:any={};
+   categoriesData:any=[];
    activatedTab:any;
    noActiveTab:boolean= true;
    apiAllCourses : any;

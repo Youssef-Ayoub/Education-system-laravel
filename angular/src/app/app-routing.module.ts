@@ -6,6 +6,8 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
 import { AllCoursesComponent } from './components/pages/all-courses/all-courses.component';
 import { UserCoursesComponent } from './components/pages/user-courses/user-courses.component';
+import { CourseDetailsComponent } from './components/pages/course-details/course-details.component';
+import { CreateCourseComponent } from './components/pages/create-course/create-course.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,9 @@ const routes: Routes = [
   {
     path:"allCourses" , component : AllCoursesComponent
   },
-  { path: 'userCourses', component: UserCoursesComponent }
+  { path: 'userCourses', component: UserCoursesComponent },
+  { path: 'courseDetails', component: CourseDetailsComponent },
+  { path: 'newCourse', component: CreateCourseComponent }
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -53,7 +54,8 @@ class CourseController extends Controller
                 'category_id' => $categoryId,
                 'instructor_name' => $request->instructor_name
             ]);
-        } else {
+        } else
+           {
             $category = Category::create(['name' => $request->category]);
             $course = Course::create([
                 'name' => $request->name,
@@ -63,8 +65,9 @@ class CourseController extends Controller
                 'instructor_name' => $request->instructor_name
             ]);
         }
-
+        
         return response()->json($course);
+
     }
 
     public function delete($id)
