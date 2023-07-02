@@ -54,7 +54,8 @@ class CourseController extends Controller
                 'category_id' => $categoryId,
                 'instructor_name' => $request->instructor_name
             ]);
-        } else {
+        } else
+           {
             $category = Category::create(['name' => $request->category]);
             $course = Course::create([
                 'name' => $request->name,
@@ -64,11 +65,16 @@ class CourseController extends Controller
                 'instructor_name' => $request->instructor_name
             ]);
         }
+<<<<<<< HEAD
 
         $user = User::find($request->user_id);
         $user->courses()->attach($course);
 
+=======
+        
+>>>>>>> 60376ff56ae580e5fff4643a7bfde0fad0c3485f
         return response()->json($course);
+
     }
 
     public function delete($id)

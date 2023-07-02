@@ -10,7 +10,7 @@ import { MyDataService } from 'src/app/services/my-data.service';
 })
 export class CourseCardComponent implements OnInit {
   src:string="../../../assets/images/Courses/";
-  @Input() course: boolean = true
+  // @Input() course: boolean = true
   @Input() title: string = 'Computer Network'
   @Input() id:any;
   @Input() numOfStudents: number = 1

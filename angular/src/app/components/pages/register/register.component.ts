@@ -54,11 +54,23 @@ export class RegisterComponent implements OnInit {
       this.MyDataService.Registeruser(formData).subscribe(
         (response:any) => {
           console.log('Response status:', response[1]);
-          if(response[1]=="success")
-          {
-            this.userData.setUserData(response[0]);
+          this.userData.setUserData(response[0]);
+          console.log('Response:', response[0]);
+          if(response[0].type==0){
+            console.log("Student Logged In")
             this.router.navigate(['']);
-           }
+             const token = "8|25HoPY3ItEA611U3saxIzK1RwV4lo9zhyjeB9HF8";   //stdent
+             sessionStorage.setItem('token', token);
+             console.log(token)
+          }
+          else{
+            console.log("Instructor Logged In")
+            this.router.navigate(['userProfile']);
+             const token ="7|a2cj7O2web2L37do5nlKAS40wy72hPJk6kWxNtrW";
+             sessionStorage.setItem('token', token);
+             console.log(token)
+          }
+          this.userData.setUserData(response[0]);
         },
         (error) => {
            console.error('Error:', error);

@@ -32,20 +32,23 @@ export class LoginComponent implements OnInit {
        // Assuming the server returns a token upon successful login
         if(response.status=="successfully logged in ")
        {
+        this.userData.setUserData(response[0]);
           console.log('Response:', response[0]);
           if(response[0].type==0){
-             const token = "8|25HoPY3ItEA611U3saxIzK1RwV4lo9zhyjeB9HF8";
+            console.log("Student Logged In")
+            this.router.navigate(['']);
+             const token = "8|25HoPY3ItEA611U3saxIzK1RwV4lo9zhyjeB9HF8";   //stdent
              sessionStorage.setItem('token', token);
              console.log(token)
-
           }
           else{
+            console.log("Instructor Logged In")
+            this.router.navigate(['userProfile']);
              const token ="7|a2cj7O2web2L37do5nlKAS40wy72hPJk6kWxNtrW";
              sessionStorage.setItem('token', token);
              console.log(token)
           }
           this.userData.setUserData(response[0]);
-          this.router.navigate(['']);
 
        }
      },

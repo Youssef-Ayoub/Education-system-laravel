@@ -23,6 +23,7 @@ import { LoggedInUserDataService } from './services/logged-in-user-data.service'
 import { CreateCourseComponent } from './components/pages/create-course/create-course.component';
 import { VideoComponent } from './components/video/video.component';
 import { PdfComponent } from './components/pdf/pdf.component';
+import { ErrorPageComponent } from './components/pages/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PdfComponent } from './components/pdf/pdf.component';
     CourseDetailsComponent,
     CreateCourseComponent,
     VideoComponent,
-    PdfComponent
+    PdfComponent,
+    ErrorPageComponent
       ],
 
   imports: [

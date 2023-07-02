@@ -2,6 +2,8 @@ import { Component, OnInit, Type, ViewChild, ViewContainerRef, ComponentRef, Com
 import { MyDataService } from '../../../services/my-data.service';
 import { VideoComponent } from '../../video/video.component';
 import { PdfComponent } from '../../pdf/pdf.component';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -9,23 +11,17 @@ import { PdfComponent } from '../../pdf/pdf.component';
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.scss'],
 })
-export class CourseDetailsComponent implements OnInit ,OnDestroy  {
+export class CourseDetailsComponent implements OnInit {
+  userData;
+  courseId:any=4;
+  courseDetails: any;
+  courseReviews: any;
+  commentForm: FormGroup;
   vidID = 'MbTM6xnl5Qc';
-
+  private componentRef?: ComponentRef<any>;
   changeID(newID: string) {
     this.vidID = newID;
   }
-
-  courseDeatils: any = {
-    id: 4,
-    title: 'Selected topics',
-    discription: 'Selected topics course is here',
-    instructor: 'dr.abdelwahab',
-    image: './assets/images/Courses/c1.jpg',
-    category: 'Development',
-    numOfStudents: 10,
-  };
-
   content: any = [
     { week: 1, pdf: 'PathPDF', video: 'Chapter1Vid1' },
     { week: 2, pdf: 'Chapter2', video: 'Chapter2Vid1' },
@@ -36,25 +32,23 @@ export class CourseDetailsComponent implements OnInit ,OnDestroy  {
     { week: 5, pdf: 'Chapter5', video: 'Chapter5Vid2' },
   ];
 
-  courseReviews: any;
-  // courseReviews=[
-  //   {userName:"Ahmed" , Comment:"GOOOD"},
-  //   {userName:"mariam" , Comment:"Very GOOOD"},
-  //   {userName:"badr" , Comment:"nice"},
-  //   {userName:"ali" , Comment:"mshNice"},
-  //   {userName:"mostafa" , Comment:"GOOokkkOD"},
-  //   {userName:"Abdo" , Comment:"momtazzz"}
-  // ]
+  constructor(private formBuilder: FormBuilder ,private MyDataService: MyDataService, private componentFactoryResolver: ComponentFactoryResolver, private route:ActivatedRoute , private router:Router) {
+    if(!sessionStorage.getItem('loggedIn')){
+      alert("please Login to see Coures Details")
+       this.router.navigate(['login']);
+    }
+    this.userData=sessionStorage.getItem('userData');
+    this.userData= JSON.parse(this.userData);
+    console.log(this.userData.id);
+   }
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
-
   createComponent(newid: string) {
-    console.log('IN Func')
     this.container.clear();
     const cType=this.getComponentType(newid);
     const component = this.container.createComponent(cType);
     component.instance.id = newid;
-    console.log(newid);
+    // console.log(newid);
    }
    getComponentType(name:string): Type<any>{
     let type : Type<any> = VideoComponent;
@@ -65,21 +59,45 @@ export class CourseDetailsComponent implements OnInit ,OnDestroy  {
     }
     return type
    }
-   private componentRef?: ComponentRef<any>; // Store the component reference
-   constructor(
-    private MyDataService: MyDataService,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) {}  ngOnInit(): void {
-    this.MyDataService.AllComments().subscribe((data) => {
+
+  ngOnInit(): void {
+    this.commentForm = this.formBuilder.group({
+      comment: ['', Validators.required],
+      rating: [1, Validators.required],
+      user_id: this.userData.id,
+      course_id:this.courseId
+    });
+
+    this.createComponent('gnTFkl2AF-w');
+    this.route.paramMap.subscribe((params) => {
+      this.courseId = params.get('id');
+      this.commentForm.value.course_id = this.courseId;
+      this.fetchCourseDetails();
+    });
+
+    this.fetchCourseDetails();
+
+    console.log("course id is " , this.courseId);
+
+    this.MyDataService.AllComments(this.courseId).subscribe((data) => {
+      console.log(this.courseId)
       this.courseReviews = data;
+      console.log('course reviews : ' ,this.courseReviews );
     });
   }
-  ngOnDestroy(): void {
-    // Clean up the dynamically created component on component destruction
-    if (this.componentRef) {
-      this.componentRef.destroy();
-    }
+
+
+  fetchCourseDetails(): void {
+    this.MyDataService.getCourse(this.courseId).subscribe((data) => {
+      this.courseDetails = data;
+      console.log(this.courseDetails)
+    });
   }
+  // ngOnDestroy(): void {
+  //    if (this.componentRef) {
+  //     this.componentRef.destroy();
+  //   }
+  // }
 
   get contentByWeek() {
     const contentByWeek: {
@@ -99,4 +117,20 @@ export class CourseDetailsComponent implements OnInit ,OnDestroy  {
     });
     return contentByWeek;
   }
+
+  // submitComment(){
+  //      console.log(this.commentForm.value)
+  //     this.MyDataService.comment(this.form.value).subscribe(
+  //     (response:any) => {
+  //       alert("course Created Successfully! ")
+  //       this.router.navigate(['userProfile']);
+
+
+  //      },
+  //     (error) => {
+  //        console.error('Error:', error);
+  //          alert(error.messeage);
+  //       }
+  //     );
+  //  }
 }

@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   userData:any;
   userComments:any;
   numOfCourses:number=0;
-  isInputDisabled: boolean = true;  
+  isInputDisabled: boolean = true;
 
   @Input() pageType:boolean=true;
 
@@ -81,11 +81,11 @@ export class UserProfileComponent implements OnInit {
     this.myApi.userCourses(this.userData.id).subscribe(
       (response) => {
         this.numOfCourses = response.length;
-        console.log(response)
+        // console.log(response)
         },
       (error) => {
         console.error('errror is ' , error)
-        console.log('param is ' , this.userData.id);
+        // console.log('param is ' , this.userData.id);
       }
     );
 }

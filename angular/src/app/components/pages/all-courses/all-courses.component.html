@@ -27,7 +27,7 @@
       <ng-container *ngFor="let course of Courses">
         <!-- || course.instructor.toLowerCase().includes(searchV) -->
           <app-course-card  class="col-xxl-3 col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" (getCategoryNameById(course.category_id ) == categoriesArray[activatedTab] ||noActiveTab || activatedTab==-1) && (searchV ==='' || course.name.toLowerCase().includes(searchV) || course.description.toLowerCase().includes(searchV) )"
-         [id]="course.id"  [title]="course.name" [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="course.id" [instructor]="'BADR'" [showEnroll]="enroll" ></app-course-card>
+         [id]="course.id"  [title]="course.name" [instructor]="course.instructor_name"  [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="course.user_count"  [showEnroll]="enroll" ></app-course-card>
       </ng-container>
     </div>
   </section>

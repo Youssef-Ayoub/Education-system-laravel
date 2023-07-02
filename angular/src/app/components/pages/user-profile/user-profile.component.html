@@ -43,13 +43,18 @@
     <div class="col-lg-8 px-0">
       <div class="bg card mb-4">
         <div class="card-body">
-          <div class="flex-row">
-            <div class="col-sm-3">
+          <div class="d-flex flex-column">
+            <div class="row">
+            <div class="col">
               <p class="mb-0">My Courses</p>
             </div>
-            <div class="col-sm-9">
-              <p><a [routerLink]="['/userCourses']">{{numOfCourses}}</a></p>
+            <div *ngIf="userData.type==1" class="col-sm-4">
+              <a  [routerLink]="['/newCourse']" class="badge" style="background: floralwhite; color: gray; margin-top: 19px;">new Course</a>
             </div>
+          </div>
+              <div class="col-sm-8">
+                <p><a [routerLink]="['/userCourses']">{{numOfCourses}}</a></p>
+              </div>
           </div>
           <hr />
           <div *ngIf="!userData.type" class="flex-row">
