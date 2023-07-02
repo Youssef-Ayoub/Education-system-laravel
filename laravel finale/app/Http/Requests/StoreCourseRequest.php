@@ -25,7 +25,8 @@ class StoreCourseRequest extends FormRequest
             'name' => ['required', 'max:255'],
             'description' => ['required'],
             'cover' => ['required'],
-            'category' => ['required']
+            'category' => ['required'],
+            'user_id' => ['required']
         ];
     }
 }

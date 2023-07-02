@@ -8,6 +8,7 @@ use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+
 class MaterialController extends Controller
 {
     public function store(StoreMaterialRequest $request)
@@ -18,6 +19,7 @@ class MaterialController extends Controller
         parse_str($query, $params);
         $videoId = $params['v'];
         $response = Http::get('http://127.0.0.1:5726/summaryYoutube/' . $videoId);
+
         $materials = Material::create([
             'course_id' => $request->course_id,
             'week' => $request->week,
@@ -38,4 +40,23 @@ class MaterialController extends Controller
         $materials = Material::where('course_id', $request->course_id)->get();
         return response()->json($materials);
     }
+
+    // public function pdfSummary(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'id' => 'required'
+    //     ]);
+
+    //     $material = Material::where('id', $request->id)->first();
+
+    //     if (!$material) {
+    //         return response()->json(['message' => 'Material not found']);
+    //     }
+
+    //     $pdfPath = 'C:\xampp\htdocs\gp\project\Education-system-laravel\angular\src\assets\pdf\Ahmed.pdf';
+
+    //     $text = Pdf::getText($pdfPath);
+
+    //     return response()->json($text);
+    // }
 }

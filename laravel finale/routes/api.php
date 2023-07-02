@@ -62,4 +62,5 @@ Route::post('students/course/number', [EnrollmentController::class, 'showCourseS
 Route::group(['prefix' => 'materials'], function () {
     Route::post('', [MaterialController::class, 'store']);
     Route::post('/course', [MaterialController::class, 'showByCourse']);
+    // Route::post('/pdfsummary', [MaterialController::class, 'pdfSummary']);
 });
