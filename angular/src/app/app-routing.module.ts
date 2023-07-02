@@ -8,6 +8,7 @@ import { AllCoursesComponent } from './components/pages/all-courses/all-courses.
 import { UserCoursesComponent } from './components/pages/user-courses/user-courses.component';
 import { CourseDetailsComponent } from './components/pages/course-details/course-details.component';
 import { CreateCourseComponent } from './components/pages/create-course/create-course.component';
+import { ErrorPageComponent } from './components/pages/error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -25,15 +26,16 @@ const routes: Routes = [
     path:"userProfile" , component : UserProfileComponent
   },
   {
-    path:"allCourses" , component : AllCoursesComponent
+    path:"courses" , component : AllCoursesComponent
   },
   { path: 'userCourses', component: UserCoursesComponent },
-  { path: 'courseDetails', component: CourseDetailsComponent },
-  { path: 'newCourse', component: CreateCourseComponent }
+  {path:'courses/course/:id' , component: CourseDetailsComponent},
+  { path: 'newCourse', component: CreateCourseComponent },
+  { path: 'error', component: ErrorPageComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes ,{ useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

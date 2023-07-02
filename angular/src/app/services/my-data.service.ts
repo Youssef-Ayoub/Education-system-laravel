@@ -29,6 +29,10 @@ export class MyDataService {
       // console.log(headers);
     return this.http.get<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses' , {headers} )
   }
+  getCourse(Id:number){
+    return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses/${Id}`);
+  }
+
   enrollInCourse(u_id:number , c_id:number){
     const param = {
       user_id: u_id,
@@ -54,8 +58,8 @@ export class MyDataService {
   return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/students/course/number' , param )
   }
 
-  AllComments(){
-    return this.http.get<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments/course/3' )
+  AllComments(Id:number){
+    return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments/course/${Id}`);
   }
   CreateCourse(courseData:any){
     return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses', courseData);

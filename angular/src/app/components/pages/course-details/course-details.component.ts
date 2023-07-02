@@ -2,6 +2,7 @@ import { Component, OnInit, Type, ViewChild, ViewContainerRef, ComponentRef, Com
 import { MyDataService } from '../../../services/my-data.service';
 import { VideoComponent } from '../../video/video.component';
 import { PdfComponent } from '../../pdf/pdf.component';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 
 @Component({
@@ -9,14 +10,15 @@ import { PdfComponent } from '../../pdf/pdf.component';
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.scss'],
 })
-export class CourseDetailsComponent implements OnInit ,OnDestroy  {
+export class CourseDetailsComponent implements OnInit {
+  courseId:any;
   vidID = 'MbTM6xnl5Qc';
 
   changeID(newID: string) {
     this.vidID = newID;
   }
 
-  courseDeatils: any = {
+  courseDetails: any = {
     id: 4,
     title: 'Selected topics',
     discription: 'Selected topics course is here',
@@ -68,18 +70,30 @@ export class CourseDetailsComponent implements OnInit ,OnDestroy  {
    private componentRef?: ComponentRef<any>; // Store the component reference
    constructor(
     private MyDataService: MyDataService,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) {}  ngOnInit(): void {
-    this.MyDataService.AllComments().subscribe((data) => {
-      this.courseReviews = data;
+    private componentFactoryResolver: ComponentFactoryResolver, private route:ActivatedRoute
+  ) {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.courseId = params.get('id');
+      this.fetchCourseDetails();
+    });
+    console.log("course id is " , this.courseId);
+
+    // this.MyDataService.AllComments(this.courseId).subscribe((data) => {
+    //   this.courseReviews = data;
+    //   console.log('course reviews : ' ,this.courseReviews );
+    // });
+  }
+  fetchCourseDetails(): void {
+    this.MyDataService.getCourse(this.courseId).subscribe((data) => {
+      this.courseDetails = data;
     });
   }
-  ngOnDestroy(): void {
-    // Clean up the dynamically created component on component destruction
-    if (this.componentRef) {
-      this.componentRef.destroy();
-    }
-  }
+  // ngOnDestroy(): void {
+  //    if (this.componentRef) {
+  //     this.componentRef.destroy();
+  //   }
+  // }
 
   get contentByWeek() {
     const contentByWeek: {

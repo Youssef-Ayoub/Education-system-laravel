@@ -16,13 +16,18 @@ export class CreateCourseComponent implements OnInit {
   constructor(private formBuilder: FormBuilder  ,private apiService:MyDataService , private apiCategories:MyDataService , private router:Router) {
     this.instructor =sessionStorage.getItem('userData');
     this.instructor =JSON.parse(this.instructor);
+    if(this.instructor.type!=1){
+      console.log(this.instructor.id)
+      this.router.navigate(['error']);
+    }
     console.log(this.instructor.name)
     this.form = this.formBuilder.group({
       category: ['', Validators.required],
       name: ['', Validators.required],
       cover: ['', Validators.required],
       description: ['', Validators.required],
-      instructor_name :[this.instructor.name]
+      instructor_name :[this.instructor.name],
+      id :[this.instructor.id]
     });
   }
 

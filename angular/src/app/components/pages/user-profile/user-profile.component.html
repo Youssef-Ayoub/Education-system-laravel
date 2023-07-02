@@ -48,7 +48,7 @@
             <div class="col">
               <p class="mb-0">My Courses</p>
             </div>
-            <div class="col-sm-4">
+            <div *ngIf="userData.type==1" class="col-sm-4">
               <a  [routerLink]="['/newCourse']" class="badge" style="background: floralwhite; color: gray; margin-top: 19px;">new Course</a>
             </div>
           </div>
