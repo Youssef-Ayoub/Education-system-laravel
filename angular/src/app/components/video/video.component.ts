@@ -7,5 +7,5 @@ import { Subscription } from 'rxjs';
   templateUrl: './video.component.html',
  })
 export class VideoComponent {
-  @Input() id: string ;
+  @Input() id: string= 'NlHwOzwbYpE' ;
 }

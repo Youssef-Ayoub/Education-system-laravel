@@ -1,7 +1,6 @@
 import { Component, Input , OnInit , OnDestroy } from '@angular/core';
 import { GcPdfViewer } from '@grapecity/gcpdfviewer';
 
-
 @Component({
   selector: 'app-pdf',
   templateUrl: './pdf.component.html',
