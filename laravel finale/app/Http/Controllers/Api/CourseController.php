@@ -65,15 +65,12 @@ class CourseController extends Controller
                 'instructor_name' => $request->instructor_name
             ]);
         }
-<<<<<<< HEAD
 
         $user = User::find($request->user_id);
         $user->courses()->attach($course);
 
-=======
-        
->>>>>>> 60376ff56ae580e5fff4643a7bfde0fad0c3485f
-        return response()->json($course);
+
+         return response()->json($course);
 
     }
 

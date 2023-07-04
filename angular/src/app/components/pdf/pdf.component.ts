@@ -14,7 +14,7 @@ export class PdfComponent {
       restoreViewStateOnLoad: false
     });
     viewer.addDefaultPanels();
-    const Url="assets/pdf/"+this.id;
+    const Url="../../assets/pdf/"+this.id;
     viewer.open(Url);
   }
 }

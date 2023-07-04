@@ -5,13 +5,10 @@
 	[pauseOnHover]="pauseOnHover"
 	[pauseOnFocus]="pauseOnFocus"
  >
-	<ng-template  ngbSlide *ngFor="let img of images; index as i">
-    <div class="d-flex justify-content-between ">
-      <app-course-card class="col-3"></app-course-card>
-      <app-course-card class="col-3"></app-course-card>
-      <app-course-card class="col-3"></app-course-card>
+	<ng-template  ngbSlide *ngFor="let feedback of Comments; index as i">
+    <div class="d-flex px-5">
+      <app-feedback [feedback]="feedback"></app-feedback>
     </div>
-
 	</ng-template>
 </ngb-carousel>
 

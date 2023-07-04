@@ -27,6 +27,7 @@ import { PdfComponent } from './components/pdf/pdf.component';
 import { ErrorPageComponent } from './components/pages/error-page/error-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SliderComponent } from './components/slider/slider.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SliderComponent } from './components/slider/slider.component';
     VideoComponent,
     PdfComponent,
     ErrorPageComponent,
-    SliderComponent
+    SliderComponent,
+    FeedbackComponent
       ],
 
   imports: [

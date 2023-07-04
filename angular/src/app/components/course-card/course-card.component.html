@@ -1,47 +1,77 @@
-<div class=" course-card">
+<div class="course-card">
   <!-- <div class="logo-cart">
     <!--<img src="images/logo.jpg" alt="logo">
     <i class='bx bx-shopping-bag'></i>
   </div> -->
   <div class="main-images">
-    <img  src={{src+image}} alt="courseImage">
+    <img src="{{ src + image }}" alt="courseImage" />
     <div class="overlay">
-        <span class="head badge" style="background: floralwhite;">{{category}}</span>
+      <span class="head badge" style="background: floralwhite">{{
+        category
+      }}</span>
     </div>
   </div>
   <div class="course-body">
-   <div class="course-details">
-        <h2 class="course-name"> {{title}}</h2>
-        <a routerLink="/courses/course/{{id}}" ><p>{{description}}</p></a>
+    <div class="course-details">
+      <h2 class="course-name">{{ title }}</h2>
+      <a (click)="changeClicked()" routerLink="/course-details"
+        ><p>{{ description }}</p></a
+      >
     </div>
-      <div class="course-info">
-       <div class="info">
-            <span class="head">{{instructor}}</span>
-            <span class="content">Instructor</span>
-          </div>
-        <div class="info">
-          <span class="head"> {{numOfStudents}} </span>
-          <span class="content">Number of Students</span>
-        </div>
-
-        <div class="info">
-          <span class="stars">
-            <i class='bx bxs-star' ></i>
-            <i class='bx bxs-star' ></i>
-            <i class='bx bxs-star' ></i>
-            <i class='bx bxs-star' ></i>
-            <i class='bx bx-star' ></i>
-          </span>
-           <span class="content">Number of Reviews : 10</span>
-
-        </div>
-
+    <div class="course-info">
+      <div class="info">
+        <span class="head">{{ instructor }}</span>
+        <span class="content">Instructor</span>
       </div>
-      <div *ngIf="showEnroll" class="button">
-        <div class="button-layer"></div>
-        <button  (click)="enroll()">Enroll now</button>
+      <div class="info">
+        <span class="head"> {{ numOfStudents }} </span>
+        <span class="content">Number of Students</span>
       </div>
+
+      <div class="info">
+        <span class="stars">
+          <i
+            class="bx"
+            [ngClass]="{
+              'bxs-star': Rate >= 1,
+              'bx-star': Rate < 1
+            }"
+          ></i>
+          <i
+            class="bx"
+            [ngClass]="{
+              'bxs-star': Rate >= 2,
+              'bx-star': Rate < 2
+            }"
+          ></i>
+          <i
+            class="bx"
+            [ngClass]="{
+              'bxs-star': Rate >= 3,
+              'bx-star': Rate < 3
+            }"
+          ></i>
+          <i
+            class="bx"
+            [ngClass]="{
+              'bxs-star': Rate >= 4,
+              'bx-star': Rate < 4
+            }"
+          ></i>
+          <i
+            class="bx"
+            [ngClass]="{
+              'bxs-star': Rate >= 5,
+              'bx-star': Rate < 5
+            }"
+          ></i>
+        </span>
+        <span class="content">Number of Reviews : {{ numOfReviews }}</span>
+      </div>
+    </div>
+    <div *ngIf="showEnroll" class="button">
+      <div class="button-layer"></div>
+      <button (click)="enroll()">Enroll now</button>
+    </div>
   </div>
-
 </div>
-

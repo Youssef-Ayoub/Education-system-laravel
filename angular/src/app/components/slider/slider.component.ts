@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -8,7 +8,7 @@ import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } fr
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent {
-	images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  @Input() Comments;
 
 	paused = false;
 	unpauseOnArrow = false;

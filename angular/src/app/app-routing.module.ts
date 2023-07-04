@@ -29,7 +29,7 @@ const routes: Routes = [
     path:"courses" , component : AllCoursesComponent
   },
   { path: 'userCourses', component: UserCoursesComponent },
-  {path:'courses/course/:id' , component: CourseDetailsComponent},
+  {path:'course-details' , component: CourseDetailsComponent},
   { path: 'newCourse', component: CreateCourseComponent },
   { path: 'error', component: ErrorPageComponent }
 ];
