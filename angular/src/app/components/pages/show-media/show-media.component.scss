@@ -1,0 +1,43 @@
+.page-banner-area {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.ptb-100 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.page-banner-conten{
+  max-width: 720px;
+}
+.page-banner-content .list{
+  margin-bottom: 15px;
+}
+.page-banner-content .list  .list-item {
+  margin-left: 25px;
+  color: #808292;
+}
+.page-banner-content  h1 {
+  margin-bottom: 18px;
+}
+.page-banner-area .page-banner-content h1 {
+  margin-bottom: 10px;
+  font-size: 45px;
+  font-weight: 700;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  color: #21225F;
+  font-weight: 600;
+}
+.page-banner-area .page-banner-content ul li:first-child {
+  margin-right: 0;
+}
+page-banner-area .page-banner-content ul li:last-child {
+  margin-left: 0;
+}
+.page-banner-area .page-banner-content ul li {
+  color: #808292;
+  font-size: 17px;
+  margin-right: 12px;
+  margin-left: 12px;
+}

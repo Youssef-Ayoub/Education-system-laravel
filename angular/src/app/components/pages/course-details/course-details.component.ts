@@ -1,19 +1,7 @@
-import {
-  Component,
-  OnInit,
-  Type,
-  ViewChild,
-  ViewContainerRef,
-  ComponentRef,
-  ComponentFactoryResolver,
-  OnDestroy,
-} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import { MyDataService } from '../../../services/my-data.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-
-import { VideoComponent } from '../../video/video.component';
-import { PdfComponent } from '../../pdf/pdf.component';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute,  Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -51,17 +39,13 @@ export class CourseDetailsComponent implements OnInit {
       user_count: 0,
     },
   ];
-
+  courseRate ;
   courseReviews: any;
   selected = 0;
   hovered = 0;
   readonly = false;
   commentForm: FormGroup;
-  vidID = 'MbTM6xnl5Qc';
-  private componentRef?: ComponentRef<any>;
-  changeID(newID: string) {
-    this.vidID = newID;
-  }
+  panels = ['First', 'Second', 'Third'];
   content: any = [
     { week: 1, pdf: 'PathPDF', video: 'Chapter1Vid1' },
     { week: 2, pdf: 'Chapter2', video: 'Chapter2Vid1' },
@@ -76,9 +60,8 @@ export class CourseDetailsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private MyDataService: MyDataService,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private route: ActivatedRoute,
-    private router: Router,
+    private sendDist: MyDataService,
+     private router: Router,
     config: NgbRatingConfig
   ) {
     if (!sessionStorage.getItem('loggedIn')) {
@@ -102,16 +85,6 @@ export class CourseDetailsComponent implements OnInit {
       user_id: this.userData.id,
       course_id: this.courseId,
     });
-
-    // this.createComponent('gnTFkl2AF-w');
-    // this.route.paramMap.subscribe((params) => {
-    //   this.courseId = params.get('id');
-    //   this.commentForm.value.course_id = this.courseId;
-    //   this.fetchCourseDetails();
-    // });
-
-    console.log('course id is ', this.courseId);
-
     this.MyDataService.AllComments(this.courseId).subscribe((data) => {
       console.log(this.courseId);
       this.courseReviews = data;
@@ -122,10 +95,85 @@ export class CourseDetailsComponent implements OnInit {
   fetchCourseDetails(): void {
     this.MyDataService.getCourse(this.courseId).subscribe((data) => {
       this.courseDetails = data;
+      this.courseRate = this.calcRate();
       console.log('course info :', this.courseDetails);
     });
   }
+  accordionSamples = [
+    {
+      id: 1,
 
+      title: 'Week1',
+      content: {
+        pdf: 'PathPDF', video: 'Chapter1Vid1'
+      }
+    },
+    {
+      id: 2,
+      title: 'Week2',
+      content: {
+        pdf: 'Chapter2', video: 'Chapter2Vid1'
+      }
+    },
+    {
+      id: 3,
+       title: 'Week3',
+      content: {
+        pdf: 'Chapter2', video: 'Chapter2Vid2'
+      }
+    },
+    {
+      id: 4,
+      title: 'Week4',
+      content: {
+        pdf: 'Chapter3', video: 'Chapter3Vid'
+      }
+    },
+    {
+      id: 5,
+      title: 'Week5',
+      content: {
+        pdf: 'Chaptet4', video: 'Chapter4Vid'
+      }
+    },
+    {
+      id: 6,
+      title: 'Week6',
+      content: {
+        pdf:'mohen',
+        video:'vid1',
+      }
+    },
+    { id: 7,
+      title: 'Week7',
+      content: {
+        pdf: 'Chapter5', video: 'Chapter5Vid1'
+      }
+    },
+    {
+      id: 8,
+      title: 'Fancy',
+      content: {
+        pdf:'mohen',
+        video:'vid1',
+      }
+    },
+    {
+      id: 9,
+      title: 'Fancy',
+      content: {
+        pdf: 'PathPDF', video: 'Chapter1Vid1'
+      }
+    },
+    {
+      id: 10,
+      title: 'Fancy',
+      content: {
+        pdf:'mohen',
+        video:'vid1',
+      }
+    }
+    ]
   get contentByWeek() {
     const contentByWeek: {
       week: any;
@@ -163,10 +211,20 @@ export class CourseDetailsComponent implements OnInit {
     this.currentSection = section;
   }
   calcRate():number{
-    return  Math.ceil((5*this.courseDetails[0].positive_count)/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
+    const rate =Math.ceil((5*this.courseDetails[0].positive_count)/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
+    console.log("Course Rate : ", rate)
+    return rate
   }
   CalcPercentage(n:number) : number{
     return Math.ceil(n*100/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
   }
-
+  sendData() {
+    const content = {
+      title: 'Angular Week1',
+      id:'BlFM6ENAAdk'
+    }
+     console.log('sending ', content)
+     sessionStorage.setItem('matrial' ,  JSON.stringify(content));
+    this.sendDist.setSharedData(content);
+  }
 }

@@ -31,8 +31,10 @@ export class HomePageComponent implements OnInit {
 
     this.myApi.AllCourses().subscribe((courses)=>{
        this.apiAllCourses = courses;
+       console.log( "All Courses",this.apiAllCourses);
        this.apiAllCourses.sort((a:any, b:any) => {
-        return b.category_id - a.category_id;
+        console.log("Sorted based on rate");
+        return  Math.ceil((5*b.positive_count)/(b.positive_count + b.negative_count + b.neutral_count)) - Math.ceil((5*a.positive_count)/(a.positive_count + a.negative_count + a.neutral_count));
       });
       //  console.log(this.apiAllCourses);
     })
@@ -48,6 +50,12 @@ export class HomePageComponent implements OnInit {
     this.noActiveTab=false;
     this.activatedTab=i;
   }
-
+  calcRate(pos: number, nat: number, neg: number) {
+    const result = Math.ceil((5 * pos) / (pos + neg + nat));
+    if(isNaN(result))
+      return 'Not Rated Yet'
+    else
+      return result;
+  }
 
 }

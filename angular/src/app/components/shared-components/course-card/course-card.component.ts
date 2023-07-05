@@ -19,7 +19,7 @@ export class CourseCardComponent implements OnInit {
   @Input() category: string = "Development";
   @Input() instructor: string = "Ahmed Badr";
   @Input() image: string = "./assets/images/first pic.jpg";
-  @Input() Rate:number=4;
+  @Input() Rate:any=4;
   @Input() showEnroll:boolean=true;
   userData:any={};
 
@@ -50,9 +50,8 @@ export class CourseCardComponent implements OnInit {
     this.myApi.enrollInCourse(this.userData.id , this.id ).subscribe(
       (response) => {
         console.log(this.userData.id , this.id);
-        console.log(response);
-
-        // alert('User Enrolled Successfulay');
+        // console.log(response);
+        alert('User Enrolled Successfulay');
       },
       (error) => {
        alert("You are not logged in. Please log in to Enroll In Course.");
