@@ -24,9 +24,9 @@ class MaterialController extends Controller
             'course_id' => $request->course_id,
             'week' => $request->week,
             'pdf' => $request->pdf,
-            'spdf' => $request->spdf,
+            'spdf' => 'null',
             'video_link' => $videoId,
-            'svideo_link' => $response,
+            'svideo_link' => 'null',
             'video_title' => $request->video_title,
         ]);
         return response()->json(['status' => 'created successfully ']);
@@ -39,6 +39,22 @@ class MaterialController extends Controller
         ]);
         $materials = Material::where('course_id', $request->course_id)->get();
         return response()->json($materials);
+    }
+
+    public function videoSummary(Request $request)
+    {
+        $id = $request->id;
+        $material = Material::where('id', $id)->get();
+
+        $url = $material->video_link;
+        $query = parse_url($url, PHP_URL_QUERY);
+        parse_str($query, $params);
+        $videoId = $params['v'];
+        $response = Http::get('http://127.0.0.1:5726/summaryYoutube/' . $videoId);
+
+        $material->svideo_link = $response;
+
+        return response()->json('Video summerized successfully');
     }
 
     // public function pdfSummary(Request $request)
