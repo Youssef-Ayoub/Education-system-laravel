@@ -68,7 +68,13 @@ class CourseController extends Controller
         $user = User::find($request->user_id);
         $user->courses()->attach($course);
 
+<<<<<<< HEAD
         return response()->json($course);
+=======
+
+         return response()->json($course);
+
+>>>>>>> 15437c3bbd2676bf89f5d78004c520ac74cdc0d9
     }
 
     public function delete($id)

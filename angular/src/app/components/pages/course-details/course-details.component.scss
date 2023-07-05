@@ -1,8 +1,192 @@
-main
-{
-width: 100%;
+html ,body {
+  overflow-x: initial !important;
+  overflow-y:auto !important;
+
 }
 .comment{
   height: 1rem;
   color: #212529; text-align:start; border-radius: 0.25rem ; border: 1px solid #ced4da; background-color: #e9ecef;
+}
+.page-banner-area {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.ptb-100 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.page-banner-conten{
+  max-width: 720px;
+}
+.page-banner-content .list{
+  margin-bottom: 15px;
+}
+.page-banner-content .list  .list-item {
+  margin-left: 25px;
+  color: #808292;
+}
+.page-banner-content  h1 {
+  margin-bottom: 18px;
+}
+.page-banner-area .page-banner-content h1 {
+  margin-bottom: 10px;
+  font-size: 45px;
+  font-weight: 700;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  color: #21225F;
+  font-weight: 600;
+}
+.page-banner-area .page-banner-content ul li:first-child {
+  margin-right: 0;
+}
+page-banner-area .page-banner-content ul li:last-child {
+  margin-left: 0;
+}
+.page-banner-area .page-banner-content ul li {
+  color: #808292;
+  font-size: 17px;
+  margin-right: 12px;
+  margin-left: 12px;
+}
+.course-details-desc .nav {
+  margin-bottom: 35px !important;
+  border-bottom: 1px solid rgba(0,0,0,.05) !important;
+}
+.course-details-desc  .nav.nav-tabs .nav-item {
+  margin-right: 55px;
+}
+.desc{
+  margin-bottom: 30px;
+}
+.course-details-content{
+  margin-bottom: 30px;
+}
+.course-details-desc .course-details-feedback  {
+  margin-bottom: 30px;
+  }
+  .course-details-desc  .course-details-feedback  .content  {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    padding: 45px 15px;
+  }
+  .course-details-desc .course-details-feedback .rating-content{
+    background-color: #e9ecef;
+    border-radius: 5px;
+    padding: 25px 15px;
+  }
+  .course-details-desc  .course-details-content  .accordion .accordion-section{
+    border: 1px solid rgb(169, 169, 169);
+     margin-bottom: 20px;
+     padding: 5px;
+    border-radius: 5px;
+  }
+  .course-details-desc  .course-details-feedback  .rating-content  .item  {
+    margin-bottom: 12px;
+}
+.course-details-desc  .course-details-feedback  .rating-content  .progress , .course-details-desc  .course-details-feedback  .rating-content  .progress-stacked  {
+  height: 4px;
+  border-radius: 0;
+}
+.rating  i  {
+  line-height: 1;
+  color: #ffc107;
+  margin-right: 1px;
+}
+.rating{
+   overflow-y: hidden;
+}
+.ngb-rating {
+  max-height: 200px; /* Set a maximum height for the NgbRating component */
+}
+  .progress-bar{
+    background-color:#3bbca7;
+  }
+  .course-details-info  {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: var(--whiteColor);
+    box-shadow: 0 0 30px #fe4a5514;
+    margin-right: 15px;
+    margin-top: -55px;
+  }
+  .course-details-desc .course-details-feedback .feedback-list {
+    margin-top: 35px;
+    background: #e9ecef;
+    height: 200px;
+    padding: 30px;
+}
+.course-details-desc .course-details-feedback .feedback-list .feedback-item{
+  margin-bottom: 25px;
+}
+.course-details-desc .course-details-write-review .form-group textarea.form-control {
+  height: auto!important;
+  padding-top: 18px;
+}
+
+.course-details-desc .course-details-write-review .form-group .form-control {
+  background-color: #e9ecef;
+  font-size: var(--fontSize);
+  color: var(--blackColor);
+  box-shadow: unset;
+  border-radius: 0;
+  height: 50px;
+  width: 100%;
+  border: 0;
+  padding-right: 18px;
+  padding-left: 18px;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color:#e9ecef;
+  background-clip: padding-box;
+  border: 1px solid white;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius:10px;
+  transition: border-color .15s ease-in-out , box-shadow .15s ease-in-out;
+}
+textarea {
+  resize: vertical;
+}
+.default-btn {
+  border: 0;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 13px 30px;
+  display: inline-block;
+  color: white;
+  transition: all ease .5s;
+  background-color:#FE4A55;
+  font-size: 16px;
+  font-weight: 600;
+}
+  @media(max-width:768px) {
+  .course-details-info{
+
+    display: none;
+
+  }
+
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+.default-btn {
+    padding: 13px 30px;
+    font-size: 15px;
+}
+}
+.activated {
+  background:#dfe0e5;
+  border-bottom:2px solid #00f;
+ }
+
+
+.w-70{
+  width: 70% !important;
 }

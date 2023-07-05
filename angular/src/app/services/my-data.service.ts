@@ -47,9 +47,9 @@ export class MyDataService {
      return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses/student' , param )
 
   }
-  // comment(commentData:any){
-  //   return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/login', commentData)
-  //  }
+  comment(commentData:any){
+    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments', commentData)
+   }
 
   AllStudentsInCourse(courseId:number)
   {

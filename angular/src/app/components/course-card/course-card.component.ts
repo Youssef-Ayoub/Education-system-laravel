@@ -14,10 +14,12 @@ export class CourseCardComponent implements OnInit {
   @Input() title: string = 'Computer Network'
   @Input() id:any;
   @Input() numOfStudents: number = 1
+  @Input() numOfReviews: number = 4
   @Input() description: string = 'computer network course'
   @Input() category: string = "Development";
   @Input() instructor: string = "Ahmed Badr";
   @Input() image: string = "./assets/images/first pic.jpg";
+  @Input() Rate:number=4;
   @Input() showEnroll:boolean=true;
   userData:any={};
 
@@ -61,6 +63,10 @@ export class CourseCardComponent implements OnInit {
      );
 
 
+  }
+  changeClicked(){
+     sessionStorage.setItem('ClickedCourseID', this.id);
+     console.log('Changed')
   }
 
 }

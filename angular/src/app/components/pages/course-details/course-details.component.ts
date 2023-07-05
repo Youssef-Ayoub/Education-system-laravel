@@ -1,10 +1,20 @@
-import { Component, OnInit, Type, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Type,
+  ViewChild,
+  ViewContainerRef,
+  ComponentRef,
+  ComponentFactoryResolver,
+  OnDestroy,
+} from '@angular/core';
 import { MyDataService } from '../../../services/my-data.service';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+
 import { VideoComponent } from '../../video/video.component';
 import { PdfComponent } from '../../pdf/pdf.component';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 
 @Component({
   selector: 'app-course-details',
@@ -12,10 +22,40 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./course-details.component.scss'],
 })
 export class CourseDetailsComponent implements OnInit {
+  public isCollapsed = true;
   userData;
-  courseId:any=4;
-  courseDetails: any;
+  courseId: any = 4;
+  courseDetails2 = [
+    {
+      section: 'Course Overview',
+      lectures: '5 lectures • 19min',
+      items: [
+        { title: 'Welcome to the Complete Python Bootcamp', duration: '00:44' },
+        { title: 'The Complete Python Bootcamp', duration: '06:39' },
+        // Add more items here
+      ],
+    },
+  ];
+  courseDetails: any = [
+    {
+      category_id: 0,
+      category_name: '',
+      cover: '',
+      description: '',
+      id: 0,
+      instructor_name: '',
+      name: '',
+      negative_count:0,
+      neutral_count: 0,
+      positive_count: 0,
+      user_count: 0,
+    },
+  ];
+
   courseReviews: any;
+  selected = 0;
+  hovered = 0;
+  readonly = false;
   commentForm: FormGroup;
   vidID = 'MbTM6xnl5Qc';
   private componentRef?: ComponentRef<any>;
@@ -31,78 +71,66 @@ export class CourseDetailsComponent implements OnInit {
     { week: 5, pdf: 'Chapter5', video: 'Chapter5Vid1' },
     { week: 5, pdf: 'Chapter5', video: 'Chapter5Vid2' },
   ];
+  currentSection: string = 'not';
 
-  constructor(private formBuilder: FormBuilder ,private MyDataService: MyDataService, private componentFactoryResolver: ComponentFactoryResolver, private route:ActivatedRoute , private router:Router) {
-    if(!sessionStorage.getItem('loggedIn')){
-      alert("please Login to see Coures Details")
-       this.router.navigate(['login']);
+  constructor(
+    private formBuilder: FormBuilder,
+    private MyDataService: MyDataService,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private route: ActivatedRoute,
+    private router: Router,
+    config: NgbRatingConfig
+  ) {
+    if (!sessionStorage.getItem('loggedIn')) {
+      alert('please Login to see Coures Details');
+      this.router.navigate(['login']);
     }
-    this.userData=sessionStorage.getItem('userData');
-    this.userData= JSON.parse(this.userData);
-    console.log(this.userData.id);
-   }
-  @ViewChild('container', { read: ViewContainerRef, static: true })
-  container!: ViewContainerRef;
-  createComponent(newid: string) {
-    this.container.clear();
-    const cType=this.getComponentType(newid);
-    const component = this.container.createComponent(cType);
-    component.instance.id = newid;
-    // console.log(newid);
-   }
-   getComponentType(name:string): Type<any>{
-    let type : Type<any> = VideoComponent;
-    if(name.slice(-4) === ".pdf")
-    {
-      type = PdfComponent;
-      return type;
-    }
-    return type
-   }
-
+    this.courseId = sessionStorage.getItem('ClickedCourseID');
+    this.courseId = JSON.parse(this.courseId);
+    console.log('course ID :', this.courseId);
+    this.fetchCourseDetails();
+    this.userData = sessionStorage.getItem('userData');
+    this.userData = JSON.parse(this.userData);
+    console.log('User Id :', this.userData.id);
+    config.max = 5;
+    config.readonly = true;
+  }
   ngOnInit(): void {
     this.commentForm = this.formBuilder.group({
       comment: ['', Validators.required],
       rating: [1, Validators.required],
       user_id: this.userData.id,
-      course_id:this.courseId
+      course_id: this.courseId,
     });
 
-    this.createComponent('gnTFkl2AF-w');
-    this.route.paramMap.subscribe((params) => {
-      this.courseId = params.get('id');
-      this.commentForm.value.course_id = this.courseId;
-      this.fetchCourseDetails();
-    });
+    // this.createComponent('gnTFkl2AF-w');
+    // this.route.paramMap.subscribe((params) => {
+    //   this.courseId = params.get('id');
+    //   this.commentForm.value.course_id = this.courseId;
+    //   this.fetchCourseDetails();
+    // });
 
-    this.fetchCourseDetails();
-
-    console.log("course id is " , this.courseId);
+    console.log('course id is ', this.courseId);
 
     this.MyDataService.AllComments(this.courseId).subscribe((data) => {
-      console.log(this.courseId)
+      console.log(this.courseId);
       this.courseReviews = data;
-      console.log('course reviews : ' ,this.courseReviews );
+      console.log('course reviews : ', this.courseReviews);
     });
   }
-
 
   fetchCourseDetails(): void {
     this.MyDataService.getCourse(this.courseId).subscribe((data) => {
       this.courseDetails = data;
-      console.log(this.courseDetails)
+      console.log('course info :', this.courseDetails);
     });
   }
-  // ngOnDestroy(): void {
-  //    if (this.componentRef) {
-  //     this.componentRef.destroy();
-  //   }
-  // }
 
   get contentByWeek() {
     const contentByWeek: {
       week: any;
-      items: any[] } [] = [];
+      items: any[];
+    }[] = [];
 
     // Group content by week
     this.content.forEach((item: { week: any }) => {
@@ -118,19 +146,27 @@ export class CourseDetailsComponent implements OnInit {
     return contentByWeek;
   }
 
-  // submitComment(){
-  //      console.log(this.commentForm.value)
-  //     this.MyDataService.comment(this.form.value).subscribe(
-  //     (response:any) => {
-  //       alert("course Created Successfully! ")
-  //       this.router.navigate(['userProfile']);
+  submitComment() {
+    this.commentForm.value.rating = this.selected;
+    console.log(this.commentForm.value);
+    this.MyDataService.comment(this.commentForm.value).subscribe(
+      (response: any) => {
+        alert('Comment Created Successfully! ');
+      },
+      (error) => {
+        console.error('Error:', error);
+        alert(error.messeage);
+      }
+    );
+  }
+  toggleSection(section: string): void {
+    this.currentSection = section;
+  }
+  calcRate():number{
+    return  Math.ceil((5*this.courseDetails[0].positive_count)/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
+  }
+  CalcPercentage(n:number) : number{
+    return Math.ceil(n*100/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
+  }
 
-
-  //      },
-  //     (error) => {
-  //        console.error('Error:', error);
-  //          alert(error.messeage);
-  //       }
-  //     );
-  //  }
 }

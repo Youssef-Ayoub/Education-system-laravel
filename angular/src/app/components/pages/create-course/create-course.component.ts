@@ -27,7 +27,7 @@ export class CreateCourseComponent implements OnInit {
       cover: ['', Validators.required],
       description: ['', Validators.required],
       instructor_name :[this.instructor.name],
-      id :[this.instructor.id]
+      user_id :[this.instructor.id]
     });
   }
 
@@ -35,7 +35,7 @@ export class CreateCourseComponent implements OnInit {
       this.apiCategories.getAllCategories().subscribe((data)=>{
         this.apiCategories=data;
           this.categories=data;
-        console.log(this.categories);
+        // console.log(this.categories);
       })
     }
     getCoverName(coverPath: string): string {
@@ -46,17 +46,17 @@ export class CreateCourseComponent implements OnInit {
     Create(){
       this.form.value.cover= this.getCoverName(this.form.value.cover);
       this.form.value.instructor_name=this.instructor.name;
-      console.log(this.form.value)
+      // console.log(this.form.value)
       this.apiService.CreateCourse(this.form.value).subscribe(
       (response:any) => {
         alert("course Created Successfully! ")
         this.router.navigate(['userProfile']);
-
-
        },
+
       (error) => {
-         console.error('Error:', error);
-           alert(error.messeage);
+         console.error('ErrorHere:', error);
+           alert("Feild To Create Course!");
+           this.router.navigate(['userProfile']);
         }
       );
     }

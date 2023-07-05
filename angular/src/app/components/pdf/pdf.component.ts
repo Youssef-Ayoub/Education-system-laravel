@@ -1,7 +1,6 @@
 import { Component, Input , OnInit , OnDestroy } from '@angular/core';
 import { GcPdfViewer } from '@grapecity/gcpdfviewer';
 
-
 @Component({
   selector: 'app-pdf',
   templateUrl: './pdf.component.html',
@@ -15,7 +14,7 @@ export class PdfComponent {
       restoreViewStateOnLoad: false
     });
     viewer.addDefaultPanels();
-    const Url="assets/pdf/"+this.id;
+    const Url="../../assets/pdf/"+this.id;
     viewer.open(Url);
   }
 }
