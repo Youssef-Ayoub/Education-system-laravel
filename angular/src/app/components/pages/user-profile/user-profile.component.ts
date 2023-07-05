@@ -71,6 +71,7 @@ export class UserProfileComponent implements OnInit {
   logout(){
     sessionStorage.removeItem('userData');
     sessionStorage.removeItem('loggedIn');
+    sessionStorage.clear();
     location.reload();
     console.log("Logged Out");
   }

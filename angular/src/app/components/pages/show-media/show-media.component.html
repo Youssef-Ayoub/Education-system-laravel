@@ -1,0 +1,47 @@
+<div class="col-md-12 d-flex justify-content-between border-right bg-gradiantt">
+  <div class="col-md-3 d-flex justify-content-between align-items-center mx-2 text-center  p-2 py-3">
+      <h2>Matrial</h2>
+  </div>
+
+  <!-- <div class="logo p-2 py-3 col-md-6 "><a class="badge-dark" routerLink="">Course Pilot</a></div> -->
+
+  <div class=" col-md-3 d-flex justify-content-between align-items-center mx-2 text-center  p-2 py-3 contact_bt">
+            <a   [routerLink]="'/course-details'" >
+              <i class="fa-sharp fa-solid fa-arrow-left fa-bounce" style="color: #ffffff;"></i>
+              Back</a>
+  </div>
+
+ </div>
+<div class="container-fluid"
+
+  class="page-banner-area ptb-100"
+  style="background-image: url(../../../assets/images/page-banner-bg.jpg)"
+>
+  <div   class="container">
+    <div   class="page-banner-content text-center">
+      <h1  >{{content.title}}</h1>
+      <ul   class="ps-0 mb-0 list-unstyled">
+        <li
+
+          class="d-inline-block position-relative"
+        >
+          <a   routerlink="" href="/"
+            >Home</a
+          >
+        </li>
+        <li
+
+          class="d-inline-block position-relative"
+        >
+        <a   routerlink="/course-media" > Course Matrial</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container d-flex justify-content-center">
+  <app-video class="mx-auto" *ngIf="vid" [id]="content.id"></app-video>
+</div>
+<app-pdf style="height: 100vh;" *ngIf="!vid" [id]="content.id"></app-pdf>
+
+

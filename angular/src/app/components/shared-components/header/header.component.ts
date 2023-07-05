@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
    }
+   
    displayInfo(){
     const mobileIcon = document.querySelector('.mobile_icon') as HTMLElement;
     const burgerBarsIcon = document.querySelector('#burger_bars_icon') as HTMLElement;

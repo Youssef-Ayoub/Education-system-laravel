@@ -6,10 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MyDataService {
+  private sharedData: any;
 
   constructor(private http:HttpClient) {
    }
 
+   setSharedData(data: any) {
+    this.sharedData = data;
+  }
+  getSharedData() {
+    return this.sharedData;
+  }
+  
   Registeruser(userData:any){
     return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/register', userData);
   }

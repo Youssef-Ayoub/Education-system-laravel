@@ -9,6 +9,7 @@ import { UserCoursesComponent } from './components/pages/user-courses/user-cours
 import { CourseDetailsComponent } from './components/pages/course-details/course-details.component';
 import { CreateCourseComponent } from './components/pages/create-course/create-course.component';
 import { ErrorPageComponent } from './components/pages/error-page/error-page.component';
+import { ShowMediaComponent } from './components/pages/show-media/show-media.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   },
   { path: 'userCourses', component: UserCoursesComponent },
   {path:'course-details' , component: CourseDetailsComponent},
+  {path:'course-media' , component: ShowMediaComponent},
   { path: 'newCourse', component: CreateCourseComponent },
   { path: 'error', component: ErrorPageComponent }
 ];

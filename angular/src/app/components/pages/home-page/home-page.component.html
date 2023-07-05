@@ -1,11 +1,12 @@
- <app-landing></app-landing>
+<app-header></app-header>
+<app-landing></app-landing>
 <section class="py-5 bg-white">
   <div class="container">
   <div class="row row-cols-2 justify-content-between mb-3">
-    <h2 class="h1 fs-4 m-0">Trending Courses</h2>
+    <h2 class="h1 fs-4 m-0">Top Rated</h2>
     <div class="button m-0">
       <div class="button-layer"></div>
-      <a routerLink="allCourses">All Courses</a>
+      <a routerLink="courses">All Courses</a>
     </div>
   </div>
 <app-trending-now [catNames]="categoriesNames" (onTabChange)="tabChange($event)"></app-trending-now>
@@ -14,17 +15,12 @@
 <section class="container-md " >
   <div class="row">
     <ng-container *ngFor="let course of apiAllCourses">
-        <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" getCategoryNameById(course.category_id) ==  categoriesNames[activatedTab] || noActiveTab || activatedTab==-1 " [id]="course.id" [title]="course.name" [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="(course.user_count)" [instructor]="course.instructor_name"></app-course-card>
+        <app-course-card  class="col-xl-4 col-md-6 col-sm-6  my-2" *ngIf=" getCategoryNameById(course.category_id) ==  categoriesNames[activatedTab] || noActiveTab || activatedTab==-1 " [id]="course.id" [title]="course.name" [description]="course.description" [image]="course.cover" [category]="getCategoryNameById(course.category_id)" [numOfStudents]="(course.user_count)" [instructor]="course.instructor_name" [numOfReviews]="course.positive_count + course.neutral_count+course.negative_count" [Rate]="calcRate(course.positive_count , course.neutral_count  , course.negative_count )"></app-course-card>
     </ng-container>
   </div>
 </section>
-<!-- <section></section>  //About
-<section ></section> //ContactUs -->
-   <!--
-{{myData | json}}
-
-<ul>
-  <li  *ngFor="let item of myData">
-    ID: {{ item.id }}, Name: {{ item.name }}
-  </li>
-</ul> -->
+ <section id="about">
+  <app-about-us></app-about-us>
+ </section>
+ <!--<section ></section> //ContactUs -->
+<app-footer></app-footer>
