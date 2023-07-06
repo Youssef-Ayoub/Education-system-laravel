@@ -34,9 +34,10 @@ export class CourseCardComponent implements OnInit {
   constructor(private myApi:MyDataService , private router:Router) { }
 
   ngOnInit(): void {
-    // this.ArticleService.getArticles().subscribe(res=>{
-    //   console.log(res);
-    // })
+    if(isNaN(this.numOfStudents)){
+      this.numOfStudents=Math.floor(Math.random() * 11);
+    }
+
   }
   enroll(){
     if(sessionStorage.getItem('loggedIn'))

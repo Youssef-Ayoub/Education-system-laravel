@@ -36,7 +36,7 @@ export class UserCoursesComponent implements OnInit {
     this.myApi.userCourses(this.userId).subscribe(
       (response) => {
         this.coursesAPI = response;
-        console.log(this.coursesAPI);
+        console.log( 'userCourses' , this.coursesAPI);
        },
       (error) => {
         console.error('errror is ' , error)

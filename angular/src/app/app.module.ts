@@ -58,7 +58,6 @@ import { CreateMatrialComponent } from './components/pages/create-matrial/create
     AboutUsComponent,
     CreateMatrialComponent
       ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
