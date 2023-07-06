@@ -30,6 +30,7 @@ import { SliderComponent } from './components/shared-components/slider/slider.co
 import { FeedbackComponent } from './components/shared-components/feedback/feedback.component';
 import { ShowMediaComponent } from './components/pages/show-media/show-media.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { CreateMatrialComponent } from './components/pages/create-matrial/create-matrial.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     SliderComponent,
     FeedbackComponent,
     ShowMediaComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    CreateMatrialComponent
       ],
 
   imports: [

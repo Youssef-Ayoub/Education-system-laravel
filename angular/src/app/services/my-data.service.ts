@@ -17,7 +17,7 @@ export class MyDataService {
   getSharedData() {
     return this.sharedData;
   }
-  
+
   Registeruser(userData:any){
     return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/register', userData);
   }
@@ -39,6 +39,12 @@ export class MyDataService {
   }
   getCourse(Id:number){
     return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses/${Id}`);
+  }
+  getMatrial(id:number){
+    const param = {
+      course_id: id,
+    }
+    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/materials/course' , param);
   }
 
   enrollInCourse(u_id:number , c_id:number){
@@ -74,5 +80,8 @@ export class MyDataService {
   }
   CreateCourse(courseData:any){
     return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses', courseData);
+  }
+  createMaterial(matrialData:any){
+    return this.http.post<any>( 'http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/materials', matrialData);
   }
 }

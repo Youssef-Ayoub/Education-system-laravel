@@ -10,20 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./course-details.component.scss'],
 })
 export class CourseDetailsComponent implements OnInit {
-  public isCollapsed = true;
+  public isCollapsed :boolean[];
   userData;
   courseId: any = 4;
-  courseDetails2 = [
-    {
-      section: 'Course Overview',
-      lectures: '5 lectures • 19min',
-      items: [
-        { title: 'Welcome to the Complete Python Bootcamp', duration: '00:44' },
-        { title: 'The Complete Python Bootcamp', duration: '06:39' },
-        // Add more items here
-      ],
-    },
-  ];
+  isOwner:boolean=false;
   courseDetails: any = [
     {
       category_id: 0,
@@ -45,22 +35,14 @@ export class CourseDetailsComponent implements OnInit {
   hovered = 0;
   readonly = false;
   commentForm: FormGroup;
-  panels = ['First', 'Second', 'Third'];
-  content: any = [
-    { week: 1, pdf: 'PathPDF', video: 'Chapter1Vid1' },
-    { week: 2, pdf: 'Chapter2', video: 'Chapter2Vid1' },
-    { week: 2, pdf: 'Chapter2', video: 'Chapter2Vid2' },
-    { week: 3, pdf: 'Chapter3', video: 'Chapter3Vid' },
-    { week: 4, pdf: 'Chaptet4', video: 'Chapter4Vid' },
-    { week: 5, pdf: 'Chapter5', video: 'Chapter5Vid1' },
-    { week: 5, pdf: 'Chapter5', video: 'Chapter5Vid2' },
-  ];
+  content: any = [];
   currentSection: string = 'not';
 
   constructor(
     private formBuilder: FormBuilder,
     private MyDataService: MyDataService,
     private sendDist: MyDataService,
+    private getMatrial: MyDataService,
      private router: Router,
     config: NgbRatingConfig
   ) {
@@ -70,15 +52,17 @@ export class CourseDetailsComponent implements OnInit {
     }
     this.courseId = sessionStorage.getItem('ClickedCourseID');
     this.courseId = JSON.parse(this.courseId);
-    console.log('course ID :', this.courseId);
+    // console.log('course ID :', this.courseId);
     this.fetchCourseDetails();
     this.userData = sessionStorage.getItem('userData');
     this.userData = JSON.parse(this.userData);
-    console.log('User Id :', this.userData.id);
+    // console.log('User Id :', this.userData.id);
     config.max = 5;
     config.readonly = true;
   }
   ngOnInit(): void {
+    const initialSize = 50;
+    this.isCollapsed = new Array(initialSize).fill(true);
     this.commentForm = this.formBuilder.group({
       comment: ['', Validators.required],
       rating: [1, Validators.required],
@@ -88,92 +72,27 @@ export class CourseDetailsComponent implements OnInit {
     this.MyDataService.AllComments(this.courseId).subscribe((data) => {
       console.log(this.courseId);
       this.courseReviews = data;
-      console.log('course reviews : ', this.courseReviews);
+      // console.log('course reviews : ', this.courseReviews);
     });
+    this.getMatrial.getMatrial(this.courseId).subscribe((matrial) => {
+      console.log("we are getting matrial of Course :" , this.courseId);
+      this.content=matrial;
+      console.log("Here it is : " , this.content)
+    })
   }
 
   fetchCourseDetails(): void {
     this.MyDataService.getCourse(this.courseId).subscribe((data) => {
       this.courseDetails = data;
+
       this.courseRate = this.calcRate();
-      console.log('course info :', this.courseDetails);
+      // console.log('course info :', this.courseDetails);
+       if(this.courseDetails[0].instructor_name == this.userData.name){
+        this.isOwner=true;
+        console.log("Can Upload Matrial")
+      }
     });
   }
-  accordionSamples = [
-    {
-      id: 1,
-
-      title: 'Week1',
-      content: {
-        pdf: 'PathPDF', video: 'Chapter1Vid1'
-      }
-    },
-    {
-      id: 2,
-      title: 'Week2',
-      content: {
-        pdf: 'Chapter2', video: 'Chapter2Vid1'
-      }
-    },
-    {
-      id: 3,
-       title: 'Week3',
-      content: {
-        pdf: 'Chapter2', video: 'Chapter2Vid2'
-      }
-    },
-    {
-      id: 4,
-      title: 'Week4',
-      content: {
-        pdf: 'Chapter3', video: 'Chapter3Vid'
-      }
-    },
-    {
-      id: 5,
-      title: 'Week5',
-      content: {
-        pdf: 'Chaptet4', video: 'Chapter4Vid'
-      }
-    },
-    {
-      id: 6,
-      title: 'Week6',
-      content: {
-        pdf:'mohen',
-        video:'vid1',
-      }
-    },
-    { id: 7,
-      title: 'Week7',
-      content: {
-        pdf: 'Chapter5', video: 'Chapter5Vid1'
-      }
-    },
-    {
-      id: 8,
-      title: 'Fancy',
-      content: {
-        pdf:'mohen',
-        video:'vid1',
-      }
-    },
-    {
-      id: 9,
-      title: 'Fancy',
-      content: {
-        pdf: 'PathPDF', video: 'Chapter1Vid1'
-      }
-    },
-    {
-      id: 10,
-      title: 'Fancy',
-      content: {
-        pdf:'mohen',
-        video:'vid1',
-      }
-    }
-    ]
   get contentByWeek() {
     const contentByWeek: {
       week: any;
@@ -210,21 +129,41 @@ export class CourseDetailsComponent implements OnInit {
   toggleSection(section: string): void {
     this.currentSection = section;
   }
-  calcRate():number{
+  calcRate():any{
     const rate =Math.ceil((5*this.courseDetails[0].positive_count)/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
     console.log("Course Rate : ", rate)
-    return rate
-  }
+    if(isNaN(rate))
+        return 'Not Rated Yet'
+      else
+        return rate;
+   }
   CalcPercentage(n:number) : number{
-    return Math.ceil(n*100/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
-  }
-  sendData() {
+    const percentage=Math.ceil(n*100/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count));
+    if(isNaN(percentage))
+    return 0
+  else
+    return percentage;
+   }
+  sendData(data:any , typeVid:boolean) {
     const content = {
-      title: 'Angular Week1',
-      id:'BlFM6ENAAdk'
+      title:'',
+      id:''
+    }
+    if(typeVid)
+    {
+      content.title = data.video_title;
+      content.id = data.video_link;
+    }
+    else
+    {
+      content.title = data.pdf.slice(0 , data.pdf.lastIndexOf(".pdf"));
+      content.id = data.pdf;
     }
      console.log('sending ', content)
      sessionStorage.setItem('matrial' ,  JSON.stringify(content));
     this.sendDist.setSharedData(content);
+  }
+  newMatrialPage(){
+    this.router.navigate(['/newMatrial', this.courseId , this.content.length+1]);
   }
 }

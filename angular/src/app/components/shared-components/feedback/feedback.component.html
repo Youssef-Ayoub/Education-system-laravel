@@ -8,7 +8,13 @@
     />
     <div>
       <h6>{{feedback.user_name}}</h6>
-      <span class="sub-title">{{feedback.rating}}</span>
+       <div class="rating" style="color: orange;">
+        <i class="bx" [ngClass]="{ 'bxs-star':  feedback.rating >= 1, 'bx-star': feedback.rating < 1 }"></i>
+        <i class="bx" [ngClass]="{ 'bxs-star': feedback.rating >= 2, 'bx-star': feedback.rating < 2 }"></i>
+        <i class="bx" [ngClass]="{ 'bxs-star': feedback.rating >= 3, 'bx-star': feedback.rating < 3 }"></i>
+        <i class="bx" [ngClass]="{ 'bxs-star': feedback.rating >= 4, 'bx-star': feedback.rating < 4 }"></i>
+        <i class="bx" [ngClass]="{ 'bxs-star': feedback.rating >= 5, 'bx-star': feedback.rating < 5 }"></i>
+      </div>
     </div>
   </div>
   <p>

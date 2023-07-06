@@ -31,7 +31,6 @@ footer .container {
 }
  .logo
 {
-  width: fit-content !important;
   display: flex;
   align-items: flex-start;
   gap: 5px;
@@ -45,7 +44,7 @@ footer .container {
 }
 
  .logo img {
-  width: 32px;
+  width: 250px;
 }
 
  nav .container .nav_links ,
@@ -188,7 +187,7 @@ nav .container .personal_profile .personal_info span {
 }
 
 .logo img {
-  width: 25px;
+  width: 220px;
 }
 
 nav .container .personal_profile .personal_img {

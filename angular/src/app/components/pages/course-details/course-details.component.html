@@ -116,111 +116,52 @@
                   "
                 >
                   <h2>Course Content</h2>
+                  <div *ngIf="isOwner" class="accordion-section">
+                    <div class="d-flex gap-1 ps-2 mb-2">
+                      <i class="fa-solid fa-plus align-self-center"></i>
+                      <a (click)="newMatrialPage()">New Matrial</a>
+                   </div>
+                  </div>
                   <div class="accordion">
-                    <!-- <ngb-accordion [closeOthers]="true" activeIds="acc-1">
-                      <ngb-panel *ngFor="let acc of accordionSamples" id="acc-{{acc.id}}" title="{{acc.title}}">
-                        <ng-template ngbPanelContent>
-                          {{acc.content.pdf}}
-                          {{acc.content.video}}
-
-                        </ng-template>
-                      </ngb-panel>
-                    </ngb-accordion> -->
-                    <div class="accordion-section" *ngFor="let week of contentByWeek">
-                      <div
-                        class="accordion-header"
-                        (click)="isCollapsed = !isCollapsed"
-                        [attr.aria-expanded]="!isCollapsed"
-                        aria-controls="collapseExample" >
-                        Week : {{week.week}}
-                      </div>
-
+                    <div class="accordion-section" *ngFor="let week of contentByWeek  let i = index">
+                      <div class="d-flex justify-content-between pe-2">
+                              <li
+                              class="accordion-header w-75" style="cursor: pointer;"
+                              (click)="isCollapsed[i] = !isCollapsed[i]"
+                              [attr.aria-expanded]="!isCollapsed"
+                              aria-controls="collapseExample" >
+                              Week : {{week.week}}
+                           </li>
+                           <i *ngIf="isCollapsed[i]" class="fa-solid fa-chevron-down"></i>
+                           <i *ngIf="!isCollapsed[i]" class="fa-solid fa-chevron-up"></i>
+                          </div>
                       <div
                         class="accordion-content"
                         #collapse="ngbCollapse"
-                        [(ngbCollapse)]="isCollapsed"
+                        [(ngbCollapse)]="isCollapsed[i]"
                       >
                         <ul class="ps-0 mb-0 list-unstyled" *ngFor="let item of week.items">
-                          <li  (click)=" sendData()"  routerLink="/course-media"
+                          <div class="d-flex justify-content-between align-items-center">
+                            <li  (click)=" sendData(item , false)"  routerLink="/course-media"
                             ngbDropdownItem
-                            class="d-sm-flex align-items-center justify-content-between">
+                            class="d-sm-flex align-items-center gap-1" style="cursor: pointer;">
                           <i class="fa-regular fa-file-pdf"></i>
                           <a>{{item.pdf}}</a>
-                          <span><i class="bx bx-lock-alt"></i> • 00:44</span>
                           </li>
-                          <li  (click)=" sendData()"  routerLink="/course-media"
-                          ngbDropdownItem
-                          class="d-sm-flex align-items-center justify-content-between">
-                          <i class="fa-solid fa-video"></i>
-                          <a>{{item.video}}</a>
-                        <span><i class="bx bx-lock-alt"></i> • 00:44</span>
-                        </li>
-
-                          <!-- <li (click)=" sendData()"   routerLink="/course-media"
+                          <span> <a class="badge bg hove" style="color: #21225F;  font-weight: 700;" href="">PDF Summary</a></span>
+                          </div>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <li  (click)=" sendData(item , true)" routerLink="/course-media"
                             ngbDropdownItem
-                            class="d-sm-flex align-items-center justify-content-between"
-                          >
-                            Course Curriculum Overview
-                            <span><i class="bx bx-lock-alt"></i> • 04:00</span>
-                          </li> -->
+                            class="d-sm-flex align-items-center gap-1" style="cursor: pointer;">
+                            <i class="fa-solid fa-video"></i>
+                            <a>{{item.video_title}}</a>
+                            </li>
+                            <span>  <a class="badge bg" style="color: #21225F;  font-weight: 700;"href="">video Summary</a></span>
+                          </div>
                         </ul>
                       </div>
                     </div>
-
-                      <!--
-                      <div class="accordion-section">
-                        <div
-                          class="accordion-header"
-                          (click)="isCollapsed = !isCollapsed"
-                          [attr.aria-expanded]="!isCollapsed"
-                          aria-controls="collapseExample"
-                        >
-                          Course Overview <span>5 lectures • 19min</span>
-                        </div>
-                        <div
-                          class="accordion-content"
-                          #collapse="ngbCollapse"
-                          [(ngbCollapse)]="isCollapsed"
-                        >
-                          <ul class="ps-0 mb-0 list-unstyled">
-                            <li
-                              ngbDropdownItem
-                              class="d-sm-flex align-items-center justify-content-between"
-                            >
-                              Welcome to the Complete Python Bootcamp
-                              <span><i class="bx bx-lock-alt"></i> • 00:44</span>
-                            </li>
-                            <li
-                              ngbDropdownItem
-                              class="d-sm-flex align-items-center justify-content-between"
-                            >
-                              The Complete Python Bootcamp
-                              <span><i class="bx bx-lock-alt"></i> • 06:39</span>
-                            </li>
-                            <li
-                              ngbDropdownItem
-                              class="d-sm-flex align-items-center justify-content-between"
-                            >
-                              Course Curriculum Overview
-                              <span><i class="bx bx-lock-alt"></i> • 04:00</span>
-                            </li>
-                            <li
-                              ngbDropdownItem
-                              class="d-sm-flex align-items-center justify-content-between"
-                            >
-                              Why Python?
-                              <span><i class="bx bx-lock-alt"></i> • 05:17</span>
-                            </li>
-                            <li
-                              ngbDropdownItem
-                              class="d-sm-flex align-items-center justify-content-between"
-                            >
-                              Course FAQs
-                              <span><i class="bx bx-lock-alt"></i> • 02:33</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div> -->
                   </div>
                 </div>
 
@@ -260,7 +201,7 @@
                             >
                               <div
                                 class="progress-bar"
-                                [style.width.%]="CalcPercentage(courseDetails[0].positive_count)"
+                                [style.width.%]="CalcPercentage(courseDetails[0].positive_count)+1"
                                ></div>
                             </div>
                           </div>
@@ -310,7 +251,7 @@
                             >
                               <div
                                 class="progress-bar"
-                                [style.width.%]="CalcPercentage(courseDetails[0].negative_count)"
+                                [style.width.%]="CalcPercentage(courseDetails[0].negative_count)+1"
                               ></div>
                             </div>
                           </div>
@@ -327,7 +268,7 @@
                     </div>
                   </div>
                   <hr />
-                  <div class="feedback-list">
+                  <div class="feedback-list" *ngIf="courseReviews && courseReviews.length > 0">
                     <app-slider [Comments]="courseReviews"></app-slider>
                   </div>
 
@@ -371,13 +312,12 @@
         </div>
         <div class="col-lg-4 col-md-12">
           <div class="course-details-info">
-            <app-course-card [id]="courseDetails[0].id" [title]="courseDetails[0].name" [image]="courseDetails[0].cover" [category]="courseDetails[0].category_name" [description]="courseDetails[0].description" [instructor]="courseDetails[0].instructor_name" [numOfStudents]="courseDetails[0].user_count" [numOfReviews]="courseDetails[0].user_count" [Rate]="courseRate" [showEnroll]="!userData.type"></app-course-card>
+            <app-course-card [id]="courseDetails[0].id" [title]="courseDetails[0].name" [image]="courseDetails[0].cover" [category]="courseDetails[0].category_name" [description]="courseDetails[0].description" [instructor]="courseDetails[0].instructor_name" [numOfStudents]="courseDetails[0].user_count" [numOfReviews]="courseDetails[0].positive_count +courseDetails[0].negative_count + courseDetails[0].neutral_count " [Rate]="courseRate" [showEnroll]="!userData.type"></app-course-card>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
 </main>
 <app-footer></app-footer>

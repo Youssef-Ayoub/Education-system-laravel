@@ -51,7 +51,13 @@ export class CourseCardComponent implements OnInit {
       (response) => {
         console.log(this.userData.id , this.id);
         // console.log(response);
-        alert('User Enrolled Successfulay');
+        if(response.message!=='Already Enrolled.')
+        {
+          alert('User Enrolled Successfulay');
+          location.reload();
+        }
+        else
+          alert('You are Already Enrolled')
       },
       (error) => {
        alert("You are not logged in. Please log in to Enroll In Course.");
