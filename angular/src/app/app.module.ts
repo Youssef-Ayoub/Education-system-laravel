@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms'
@@ -55,7 +55,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     FeedbackComponent,
     ShowMediaComponent,
     AboutUsComponent
-      ],
+  ],
 
   imports: [
     BrowserModule,
@@ -64,7 +64,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     FormsModule,
     ReactiveFormsModule,
     NgxYoutubePlayerModule.forRoot(),
-    MdbCarouselModule,NgbModule],
+    MdbCarouselModule, NgbModule],
   providers: [LoggedInUserDataService
   ],
   bootstrap: [AppComponent]
