@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\EnrollmentController;
 use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\Api\UserController;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -63,5 +64,6 @@ Route::group(['prefix' => 'materials'], function () {
     Route::post('', [MaterialController::class, 'store']);
     Route::post('/course', [MaterialController::class, 'showByCourse']);
     Route::get('/videosummary/{id}', [MaterialController::class, 'videoSummary']);
-    // Route::post('/pdfsummary', [MaterialController::class, 'pdfSummary']);
+    Route::get('/pdf', [MaterialController::class, 'pdf']);
+    Route::get('/pdfsummary/{id}', [MaterialController::class, 'pdfSummary']);
 });
