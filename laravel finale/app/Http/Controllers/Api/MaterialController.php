@@ -25,7 +25,12 @@ class MaterialController extends Controller
             'svideo_link' => 'null',
             'video_title' => $request->video_title,
         ]);
-        return response()->json(['status' => 'created successfully ']);
+
+        $response = Http::withOptions([
+            'timeout' => 360 // in seconds
+        ])->get('http://127.0.0.1:5726/summaryYoutube/' . $materials->video_link);
+
+        $materials->svideo_link = $response;
     }
 
     public function showByCourse(Request $request)
@@ -37,16 +42,18 @@ class MaterialController extends Controller
         return response()->json($materials);
     }
 
-    public function videoSummary(Request $request)
+    public function videoSummary($id)
     {
-        $id = $request->id;
-        $material = Material::where('id', $id)->get();
+        // $id = $request->id;
+        $material = Material::where('id', $id)->first();
 
-        $url = $material->video_link;
-        $query = parse_url($url, PHP_URL_QUERY);
-        parse_str($query, $params);
-        $videoId = $params['v'];
-        $response = Http::get('http://127.0.0.1:5726/summaryYoutube/' . $videoId);
+        if ($material->svideo_link != 'null') {
+            return response()->json($material->svideo_link);
+        }
+
+        $response = Http::withOptions([
+            'timeout' => 360 // in seconds
+        ])->get('http://127.0.0.1:5726/summaryYoutube/' . $material->video_link);
 
         $material->svideo_link = $response;
 
