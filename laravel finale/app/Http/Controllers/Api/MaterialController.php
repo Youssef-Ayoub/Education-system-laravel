@@ -50,7 +50,7 @@ class MaterialController extends Controller
 
         $material->svideo_link = $response;
 
-        return response()->json('Video summerized successfully');
+        return response()->json($response);
     }
 
     // public function pdfSummary(Request $request)
