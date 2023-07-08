@@ -171,7 +171,7 @@ export class CourseDetailsComponent implements OnInit {
        console.log(' summary :', this.summary);
        
     });
-  
+    
   }
   newMatrialPage(){
     this.router.navigate(['/newMatrial', this.courseId , this.content.length+1]);
