@@ -43,6 +43,7 @@ export class CourseDetailsComponent implements OnInit {
     private MyDataService: MyDataService,
     private sendDist: MyDataService,
     private getMatrial: MyDataService,
+    private summary: MyDataService,
      private router: Router,
     config: NgbRatingConfig
   ) {
@@ -162,6 +163,15 @@ export class CourseDetailsComponent implements OnInit {
      console.log('sending ', content)
      sessionStorage.setItem('matrial' ,  JSON.stringify(content));
     this.sendDist.setSharedData(content);
+  }
+  vidSummary(id:number)
+  {
+    this.summary.getVidSummary(id).subscribe((data) => {
+      this.summary = data;
+       console.log(' summary :', this.summary);
+       
+    });
+  
   }
   newMatrialPage(){
     this.router.navigate(['/newMatrial', this.courseId , this.content.length+1]);
