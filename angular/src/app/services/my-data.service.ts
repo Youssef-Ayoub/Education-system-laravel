@@ -18,8 +18,8 @@ export class MyDataService {
     return this.sharedData;
   }
 
-  Registeruser(userData:any){
-    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/register', userData);
+  Registeruser(userData: any) {
+    return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/register', userData);
   }
 
   Login(loginData: any) {
@@ -33,19 +33,19 @@ export class MyDataService {
     return this.http.get<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/categories', { headers })
   }
 
-  AllCourses(){
-      const headers = { 'Accept':'application/vnd.api+json' , 'Content-Type': 'application/vnd.api+json' }
-      // console.log(headers);
-    return this.http.get<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses' , {headers} )
+  AllCourses() {
+    const headers = { 'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json' }
+    // console.log(headers);
+    return this.http.get<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/courses', { headers })
   }
-  getCourse(Id:number){
-    return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses/${Id}`);
+  getCourse(Id: number) {
+    return this.http.get<any>(`http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/courses/${Id}`);
   }
-  getMatrial(id:number){
+  getMatrial(id: number) {
     const param = {
       course_id: id,
     }
-    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/materials/course' , param);
+    return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/materials/course', param);
   }
 
   enrollInCourse(u_id: number, c_id: number) {
@@ -75,13 +75,13 @@ export class MyDataService {
     return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/students/course/number', param)
   }
 
-  AllComments(Id:number){
-    return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments/course/${Id}`);
+  AllComments(Id: number) {
+    return this.http.get<any>(`http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/comments/course/${Id}`);
   }
-  CreateCourse(courseData:any){
-    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses', courseData);
+  CreateCourse(courseData: any) {
+    return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/courses', courseData);
   }
-  createMaterial(matrialData:any){
-    return this.http.post<any>( 'http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/materials', matrialData);
+  createMaterial(matrialData: any) {
+    return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/materials', matrialData);
   }
 }
