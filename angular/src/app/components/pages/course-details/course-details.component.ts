@@ -44,6 +44,7 @@ export class CourseDetailsComponent implements OnInit {
     private sendDist: MyDataService,
     private getMatrial: MyDataService,
     private summary: MyDataService,
+    private pdfsummary: MyDataService,
     private router: Router,
     config: NgbRatingConfig
   ) {
@@ -169,7 +170,13 @@ export class CourseDetailsComponent implements OnInit {
       console.log(' summary :', this.summary);
 
     });
-
+  }
+  pdfSummary(id: number) {
+    console.log(id)
+    this.summary.getpdfSummary(id).subscribe((data) => {
+      this.summary = data;
+      console.log(' summary :', this.summary);
+    });
   }
   newMatrialPage() {
     this.router.navigate(['/newMatrial', this.courseId, this.content.length + 1]);

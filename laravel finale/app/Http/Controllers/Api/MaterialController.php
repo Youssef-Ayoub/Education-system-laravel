@@ -53,6 +53,10 @@ class MaterialController extends Controller
         // $id = $request->id;
         $material = Material::where('id', $id)->first();
 
+        if ($material == null) {
+            return response()->json(['Material not found.']);
+        }
+
         if ($material->svideo_link != 'null') {
             return response()->json($material->svideo_link);
         }

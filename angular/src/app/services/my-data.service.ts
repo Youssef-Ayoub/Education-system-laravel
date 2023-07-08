@@ -87,4 +87,7 @@ export class MyDataService {
   createMaterial(matrialData: any) {
     return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/materials', matrialData);
   }
+  getpdfSummary(id: any) {
+    return this.http.get<any>(`http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/materials/pdfsummary/${id}`);
+  }
 }
