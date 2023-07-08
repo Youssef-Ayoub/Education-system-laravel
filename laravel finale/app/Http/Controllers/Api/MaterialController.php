@@ -14,11 +14,7 @@ class MaterialController extends Controller
     public function store(StoreMaterialRequest $request)
     {
         // $materials = Material::create($request->except($request->id));
-        // $url = $request->video_link;
-        // $query = parse_url($url, PHP_URL_QUERY);
-        // parse_str($query, $params);
-        // $videoId = $params['v'];
-        // $response = Http::get('http://127.0.0.1:5726/summaryYoutube/' . $videoId);
+
 
         $materials = Material::create([
             'course_id' => $request->course_id,
