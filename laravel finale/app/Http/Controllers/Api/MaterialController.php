@@ -5,8 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMaterialRequest;
 use App\Models\Material;
+use Dotenv\Parser\Parser as ParserParser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redis;
+use Spatie\PdfToText\Pdf;
+use Zend_Pdf;
+
+
 
 
 class MaterialController extends Controller
@@ -25,7 +31,12 @@ class MaterialController extends Controller
             'svideo_link' => 'null',
             'video_title' => $request->video_title,
         ]);
-        return response()->json(['status' => 'created successfully ']);
+
+        $response = Http::withOptions([
+            'timeout' => 360 // in seconds
+        ])->get('http://127.0.0.1:5726/summaryYoutube/' . $materials->video_link);
+
+        $materials->svideo_link = $response;
     }
 
     public function showByCourse(Request $request)
@@ -37,38 +48,61 @@ class MaterialController extends Controller
         return response()->json($materials);
     }
 
-    public function videoSummary(Request $request)
+    public function videoSummary($id)
     {
-        $id = $request->id;
-        $material = Material::where('id', $id)->get();
+        // $id = $request->id;
+        $material = Material::where('id', $id)->first();
 
-        $url = $material->video_link;
-        $query = parse_url($url, PHP_URL_QUERY);
-        parse_str($query, $params);
-        $videoId = $params['v'];
-        $response = Http::get('http://127.0.0.1:5726/summaryYoutube/' . $videoId);
+        if ($material == null) {
+            return response()->json(['Material not found.']);
+        }
 
-        $material->svideo_link = $response;
+        if ($material->svideo_link != 'null') {
+            return response()->json($material->svideo_link);
+        }
 
-        return response()->json($response);
+        $response = Http::withOptions([
+            'timeout' => 360 // in seconds
+        ])->get('http://127.0.0.1:5726/summaryYoutube/' . $material->video_link);
+
+        $material->svideo_link = $response->body();
+
+        $material->save();
+
+        return response()->json($response->body());
     }
 
-    // public function pdfSummary(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'id' => 'required'
-    //     ]);
 
-    //     $material = Material::where('id', $request->id)->first();
 
-    //     if (!$material) {
-    //         return response()->json(['message' => 'Material not found']);
-    //     }
+    public function pdfSummary($id)
+    {
+        $material = Material::where('id', $id)->first();
 
-    //     $pdfPath = 'C:\xampp\htdocs\gp\project\Education-system-laravel\angular\src\assets\pdf\Ahmed.pdf';
+        if ($material->spdf != 'null') {
+            return response()->json($material->spdf);
+        }
 
-    //     $text = Pdf::getText($pdfPath);
+        if ($material->pdf == null) {
+            return response()->json(['there is no pdf']);
+        }
 
-    //     return response()->json($text);
-    // }
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf = $parser->parseFile(public_path($material->pdf));
+
+        $text = $pdf->getText();
+
+        $text = str_replace("\n", "", $text); // Replace newline characters with a space
+        $text = str_replace("\t", "", $text);
+
+
+        $response = Http::withOptions([
+            'timeout' => 360 // in seconds
+        ])->get('http://127.0.0.1:5726/summaryText/' . $text);
+
+        $material->spdf = $response->body();
+
+        $material->save();
+
+        return response()->json($response->body());
+    }
 }

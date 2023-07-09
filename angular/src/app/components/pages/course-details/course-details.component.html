@@ -148,7 +148,7 @@
                           <i class="fa-regular fa-file-pdf"></i>
                           <a>{{item.pdf}}</a>
                           </li>
-                          <span> <a class="badge bg hove" style="color: #21225F;  font-weight: 700;" href="">PDF Summary</a></span>
+                          <span> <a class="badge bg hove" style="color: #21225F;  font-weight: 700;" (click)="pdfSummary(item.id)">PDF Summary</a></span>
                           </div>
                           <div class="d-flex justify-content-between align-items-center">
                             <li  (click)=" sendData(item , true)" routerLink="/course-media"

@@ -1,7 +1,7 @@
-import {Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MyDataService } from '../../../services/my-data.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute,  Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,10 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./course-details.component.scss'],
 })
 export class CourseDetailsComponent implements OnInit {
-  public isCollapsed :boolean[];
+  public isCollapsed: boolean[];
   userData;
   courseId: any = 4;
-  isOwner:boolean=false;
+  isOwner: boolean = false;
   courseDetails: any = [
     {
       category_id: 0,
@@ -23,13 +23,13 @@ export class CourseDetailsComponent implements OnInit {
       id: 0,
       instructor_name: '',
       name: '',
-      negative_count:0,
+      negative_count: 0,
       neutral_count: 0,
       positive_count: 0,
       user_count: 0,
     },
   ];
-  courseRate ;
+  courseRate;
   courseReviews: any;
   selected = 0;
   hovered = 0;
@@ -44,7 +44,8 @@ export class CourseDetailsComponent implements OnInit {
     private sendDist: MyDataService,
     private getMatrial: MyDataService,
     private summary: MyDataService,
-     private router: Router,
+    private pdfsummary: MyDataService,
+    private router: Router,
     config: NgbRatingConfig
   ) {
     if (!sessionStorage.getItem('loggedIn')) {
@@ -76,9 +77,9 @@ export class CourseDetailsComponent implements OnInit {
       // console.log('course reviews : ', this.courseReviews);
     });
     this.getMatrial.getMatrial(this.courseId).subscribe((matrial) => {
-      console.log("we are getting matrial of Course :" , this.courseId);
-      this.content=matrial;
-      console.log("Here it is : " , this.content)
+      console.log("we are getting matrial of Course :", this.courseId);
+      this.content = matrial;
+      console.log("Here it is : ", this.content)
     })
   }
 
@@ -88,8 +89,8 @@ export class CourseDetailsComponent implements OnInit {
 
       this.courseRate = this.calcRate();
       // console.log('course info :', this.courseDetails);
-       if(this.courseDetails[0].instructor_name == this.userData.name){
-        this.isOwner=true;
+      if (this.courseDetails[0].instructor_name == this.userData.name) {
+        this.isOwner = true;
         console.log("Can Upload Matrial")
       }
     });
@@ -130,50 +131,54 @@ export class CourseDetailsComponent implements OnInit {
   toggleSection(section: string): void {
     this.currentSection = section;
   }
-  calcRate():any{
-    const rate =Math.ceil((5*this.courseDetails[0].positive_count)/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
+  calcRate(): any {
+    const rate = Math.ceil((5 * this.courseDetails[0].positive_count) / (this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
     console.log("Course Rate : ", rate)
-    if(isNaN(rate))
-        return 'Not Rated Yet'
-      else
-        return rate;
-   }
-  CalcPercentage(n:number) : number{
-    const percentage=Math.ceil(n*100/(this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count));
-    if(isNaN(percentage))
-    return 0
-  else
-    return percentage;
-   }
-  sendData(data:any , typeVid:boolean) {
+    if (isNaN(rate))
+      return 'Not Rated Yet'
+    else
+      return rate;
+  }
+  CalcPercentage(n: number): number {
+    const percentage = Math.ceil(n * 100 / (this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count));
+    if (isNaN(percentage))
+      return 0
+    else
+      return percentage;
+  }
+  sendData(data: any, typeVid: boolean) {
     const content = {
-      title:'',
-      id:''
+      title: '',
+      id: ''
     }
-    if(typeVid)
-    {
+    if (typeVid) {
       content.title = data.video_title;
       content.id = data.video_link;
     }
-    else
-    {
-      content.title = data.pdf.slice(0 , data.pdf.lastIndexOf(".pdf"));
+    else {
+      content.title = data.pdf.slice(0, data.pdf.lastIndexOf(".pdf"));
       content.id = data.pdf;
     }
-     console.log('sending ', content)
-     sessionStorage.setItem('matrial' ,  JSON.stringify(content));
+    console.log('sending ', content)
+    sessionStorage.setItem('matrial', JSON.stringify(content));
     this.sendDist.setSharedData(content);
   }
-  vidSummary(id:number)
-  {
+  vidSummary(id: number) {
+    console.log(id)
     this.summary.getVidSummary(id).subscribe((data) => {
       this.summary = data;
-       console.log(' summary :', this.summary);
-       
+      console.log(' summary :', this.summary);
+
     });
-    
   }
-  newMatrialPage(){
-    this.router.navigate(['/newMatrial', this.courseId , this.content.length+1]);
+  pdfSummary(id: number) {
+    console.log(id)
+    this.summary.getpdfSummary(id).subscribe((data) => {
+      this.summary = data;
+      console.log(' summary :', this.summary);
+    });
+  }
+  newMatrialPage() {
+    this.router.navigate(['/newMatrial', this.courseId, this.content.length + 1]);
   }
 }
