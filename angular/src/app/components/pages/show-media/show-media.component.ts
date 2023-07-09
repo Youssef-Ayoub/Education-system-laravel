@@ -12,12 +12,10 @@ export class ShowMediaComponent implements OnInit {
     title:'Ahmed CV',
     id:'ahmed.pdf'
   };
-  vid:boolean =true;
+   vid:number =1;
    constructor(private route: ActivatedRoute , private getDist : MyDataService){
-
    }
   ngOnInit(): void {
-
     if(this.getDist.getSharedData())
     {
        this.content = this.getDist.getSharedData();
@@ -27,10 +25,14 @@ export class ShowMediaComponent implements OnInit {
     console.log("there is Matrial", sessionStorage.getItem('matrial'));
     this.content = sessionStorage.getItem('matrial');
     this.content = JSON.parse(this.content);
-    
-    if(this.content.id.slice(-4) === ".pdf"){
-      this.vid=false;
+    if(this.content.typeSummary)
+    {
+      this.vid=2;
+    }
+    else if(this.content.id.slice(-4) === ".pdf"){
+      this.vid=0;
      }
+
 
   }
 }

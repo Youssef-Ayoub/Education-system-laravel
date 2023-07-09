@@ -19,7 +19,8 @@
 >
   <div   class="container">
     <div   class="page-banner-content text-center">
-      <h1  >{{content.title}}</h1>
+      <h1  *ngIf="vid!==2">{{content.title}}</h1>
+      <h1 *ngIf="vid==2" >{{content.title}} Summary </h1>
       <ul   class="ps-0 mb-0 list-unstyled">
         <li
 
@@ -40,8 +41,14 @@
   </div>
 </div>
 <div class="container d-flex justify-content-center">
-  <app-video class="mx-auto" *ngIf="vid" [id]="content.id"></app-video>
+  <app-video class="mx-auto" *ngIf="vid==1" [id]="content.id"></app-video>
 </div>
-<app-pdf style="height: 100vh;" *ngIf="!vid" [id]="content.id"></app-pdf>
+<app-pdf style="height: 100vh;" *ngIf="vid==0" [id]="content.id"></app-pdf>
+<div class="container"  *ngIf="vid==2">
+  <!-- <h1 class=" text-center">PDF Summary</h1> -->
+  <p class="w-75 overflow-auto mx-auto p-5 text-bg-info" style="height: 400px;">
+     {{content.matrialSummary}}
+  </p>
+</div>
 
 

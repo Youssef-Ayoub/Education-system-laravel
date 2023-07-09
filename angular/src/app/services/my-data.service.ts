@@ -23,7 +23,7 @@ export class MyDataService {
   }
 
   Login(loginData: any) {
-    return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/login', loginData)
+    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/login', loginData)
   }
 
   getAllCategories() {
@@ -79,15 +79,15 @@ export class MyDataService {
     return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/comments/course/${Id}`);
   }
   getVidSummary(id: any) {
-    return this.http.get<any>(`http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/materials/videosummary/${id}`)
+    return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/materials/videosummary/${id}`)
   }
   CreateCourse(courseData: any) {
-    return this.http.post<any>('http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/courses', courseData);
+    return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/courses', courseData);
   }
   createMaterial(matrialData: any) {
     return this.http.post<any>('http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/materials', matrialData);
   }
   getpdfSummary(id: any) {
-    return this.http.get<any>(`http://localhost/gp/project/Education-system-laravel/laravel%20finale/public/api/materials/pdfsummary/${id}`);
+    return this.http.get<any>(`http://localhost/CoursePilot/Education-system-laravel/laravel%20finale/public/api/materials/pdfsummary/${id}`);
   }
 }

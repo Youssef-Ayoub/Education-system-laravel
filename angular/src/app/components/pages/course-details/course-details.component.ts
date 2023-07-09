@@ -163,22 +163,55 @@ export class CourseDetailsComponent implements OnInit {
     sessionStorage.setItem('matrial', JSON.stringify(content));
     this.sendDist.setSharedData(content);
   }
-  vidSummary(id: number) {
-    console.log(id)
-    this.summary.getVidSummary(id).subscribe((data) => {
-      this.summary = data;
-      console.log(' summary :', this.summary);
 
-    });
+  Summary(data: any , type:boolean) {
+        console.log('Content ID :' , data.id)
+    const content = {
+      typeSummary:true,
+      title: '',
+      id: '',
+      matrialSummary:''
+    }
+    if (type) {
+      content.title = data.video_title;
+      content.id = data.id;
+      this.summary.getVidSummary(content.id).subscribe((data) => {
+        content.matrialSummary = data;
+        console.log(' summary :', content.matrialSummary);
+        console.log('sending ', content)
+        sessionStorage.setItem('matrial', JSON.stringify(content));
+
+        this.sendDist.setSharedData(content);
+        console.log('Content ID :' , content.id)
+      });
+    }
+    else {
+      content.title = data.pdf.slice(0, data.pdf.lastIndexOf(".pdf"));
+      content.id = data.id;
+      this.summary.getpdfSummary(content.id).subscribe((data) => {
+         content.matrialSummary = data;
+        console.log(' summary :', content.matrialSummary);
+        console.log('sending ', content)
+        sessionStorage.setItem('matrial', JSON.stringify(content));
+        this.reloadPage();
+        this.sendDist.setSharedData(content);
+        console.log('Content ID :' , content.id)
+      });
+    }
+
+
   }
   pdfSummary(id: number) {
     console.log(id)
-    this.summary.getpdfSummary(id).subscribe((data) => {
-      this.summary = data;
-      console.log(' summary :', this.summary);
-    });
+
   }
   newMatrialPage() {
     this.router.navigate(['/newMatrial', this.courseId, this.content.length + 1]);
+  }
+  reloadPage() {
+    const delayTime = 2000; // Time in milliseconds before reloading the page
+    setTimeout(() => {
+      location.reload();
+    }, delayTime);
   }
 }
