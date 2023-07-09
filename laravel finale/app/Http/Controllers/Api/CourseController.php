@@ -127,8 +127,8 @@ class CourseController extends Controller
                 'categories.name as category_name',
                 DB::raw('count(distinct users.id) as user_count'),
                 DB::raw('count(case when comments.sentiment = "1" then 1 end) as positive_count'),
-                DB::raw('count(case when comments.sentiment = "0" then 1 end) as neutral_count'),
-                DB::raw('count(case when comments.sentiment = "-1" then 1 end) as negative_count')
+                DB::raw('count(case when comments.sentiment = "-1" then 1 end) as neutral_count'),
+                DB::raw('count(case when comments.sentiment = "0" then 1 end) as negative_count')
             )
             ->groupBy('courses.id', 'courses.name', 'courses.description', 'courses.cover', 'courses.instructor_name', 'categories.id', 'categories.name')
             ->get();
