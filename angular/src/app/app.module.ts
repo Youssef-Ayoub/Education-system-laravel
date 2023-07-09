@@ -31,6 +31,7 @@ import { FeedbackComponent } from './components/shared-components/feedback/feedb
 import { ShowMediaComponent } from './components/pages/show-media/show-media.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { CreateMatrialComponent } from './components/pages/create-matrial/create-matrial.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CreateMatrialComponent } from './components/pages/create-matrial/create
     FeedbackComponent,
     ShowMediaComponent,
     AboutUsComponent,
-    CreateMatrialComponent
+    CreateMatrialComponent,
+    ContactUsComponent
       ],
   imports: [
     BrowserModule,
