@@ -121,6 +121,7 @@ export class CourseDetailsComponent implements OnInit {
     this.MyDataService.comment(this.commentForm.value).subscribe(
       (response: any) => {
         alert('Comment Created Successfully! ');
+        location.reload();
       },
       (error) => {
         console.error('Error:', error);
