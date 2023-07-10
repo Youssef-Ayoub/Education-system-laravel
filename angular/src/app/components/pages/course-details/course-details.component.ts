@@ -54,11 +54,11 @@ export class CourseDetailsComponent implements OnInit {
     }
     this.courseId = sessionStorage.getItem('ClickedCourseID');
     this.courseId = JSON.parse(this.courseId);
-    // console.log('course ID :', this.courseId);
+    // // // consoleee.log('course ID :', this.courseId);
     this.fetchCourseDetails();
     this.userData = sessionStorage.getItem('userData');
     this.userData = JSON.parse(this.userData);
-    // console.log('User Id :', this.userData.id);
+    // // // consoleee.log('User Id :', this.userData.id);
     config.max = 5;
     config.readonly = true;
   }
@@ -72,14 +72,14 @@ export class CourseDetailsComponent implements OnInit {
       course_id: this.courseId,
     });
     this.MyDataService.AllComments(this.courseId).subscribe((data) => {
-      console.log(this.courseId);
+      // // consoleee.log(this.courseId);
       this.courseReviews = data;
-      // console.log('course reviews : ', this.courseReviews);
+      // // // consoleee.log('course reviews : ', this.courseReviews);
     });
     this.getMatrial.getMatrial(this.courseId).subscribe((matrial) => {
-      console.log("we are getting matrial of Course :", this.courseId);
+      // // consoleee.log("we are getting matrial of Course :", this.courseId);
       this.content = matrial;
-      console.log("Here it is : ", this.content)
+      // // consoleee.log("Here it is : ", this.content)
     })
   }
 
@@ -88,10 +88,10 @@ export class CourseDetailsComponent implements OnInit {
       this.courseDetails = data;
 
       this.courseRate = this.calcRate();
-      // console.log('course info :', this.courseDetails);
+      // // // consoleee.log('course info :', this.courseDetails);
       if (this.courseDetails[0].instructor_name == this.userData.name) {
         this.isOwner = true;
-        console.log("Can Upload Matrial")
+        // // consoleee.log("Can Upload Matrial")
       }
     });
   }
@@ -117,14 +117,14 @@ export class CourseDetailsComponent implements OnInit {
 
   submitComment() {
     this.commentForm.value.rating = this.selected;
-    console.log(this.commentForm.value);
+    // // consoleee.log(this.commentForm.value);
     this.MyDataService.comment(this.commentForm.value).subscribe(
       (response: any) => {
         alert('Comment Created Successfully! ');
         location.reload();
       },
       (error) => {
-        console.error('Error:', error);
+        // // consoleee.error('Error:', error);
         alert(error.messeage);
       }
     );
@@ -134,7 +134,7 @@ export class CourseDetailsComponent implements OnInit {
   }
   calcRate(): any {
     const rate = Math.ceil((5 * this.courseDetails[0].positive_count) / (this.courseDetails[0].positive_count + this.courseDetails[0].negative_count + this.courseDetails[0].neutral_count))
-    console.log("Course Rate : ", rate)
+    // // // consoleee.log("Course Rate : ", rate)
     if (isNaN(rate))
       return 'Not Rated Yet'
     else
@@ -147,39 +147,124 @@ export class CourseDetailsComponent implements OnInit {
     else
       return percentage;
   }
-  sendData(data: any, typeVid: boolean) {
-    const content = {
+  media(data: any, type: number) {
+    const matrial = {
+      id: '',
+      matrialType: type,
       title: '',
-      id: ''
-    }
-    if (typeVid) {
-      content.title = data.video_title;
-      content.id = data.video_link;
-    }
-    else {
-      content.title = data.pdf.slice(0, data.pdf.lastIndexOf(".pdf"));
-      content.id = data.pdf;
-    }
-    console.log('sending ', content)
-    sessionStorage.setItem('matrial', JSON.stringify(content));
-    this.sendDist.setSharedData(content);
-  }
-  vidSummary(id: number) {
-    console.log(id)
-    this.summary.getVidSummary(id).subscribe((data) => {
-      this.summary = data;
-      console.log(' summary :', this.summary);
+      matrialContent: '',
+    };
 
-    });
+    if (type == 1) {
+      // PDF
+      matrial.title = data.pdf.slice(0, data.pdf.lastIndexOf(".pdf"));
+      matrial.id = data.pdf;
+
+      saveDataAndNavigate(this.router);
+    } else if (type == 2) {
+      // PDF Summary
+      matrial.title = data.pdf.slice(0, data.pdf.lastIndexOf(".pdf"));
+      matrial.id = data.id;
+
+      this.summary.getpdfSummary(data.id).subscribe((summaryData) => {
+        matrial.matrialContent = summaryData;
+        // // // consoleee.log('PDF Summary:', matrial.matrialContent);
+        saveDataAndNavigate(this.router);
+      });
+    } else if (type == 3) {
+      // Video
+      matrial.title = data.video_title;
+      matrial.id = data.video_link;
+
+      saveDataAndNavigate(this.router);
+    } else if (type == 4) {
+      // Video Summary
+      matrial.title = data.video_title;
+      matrial.id = data.id;
+
+      this.summary.getVidSummary(data.id).subscribe((summaryData) => {
+        matrial.matrialContent = summaryData;
+        // // // consoleee.log('Summary:', matrial.matrialContent);
+
+        saveDataAndNavigate(this.router);
+      });
+    }
+
+    function saveDataAndNavigate(router: Router) {
+      sessionStorage.setItem('matrial', JSON.stringify(matrial));
+      // // consoleee.log('sending ', matrial)
+      // Navigate to the other page here
+      // // consoleee.log('navigating now')
+       router.navigate(['/course-media']);
+    }
   }
-  pdfSummary(id: number) {
-    console.log(id)
-    this.summary.getpdfSummary(id).subscribe((data) => {
-      this.summary = data;
-      console.log(' summary :', this.summary);
-    });
-  }
+
+  // sendData(data: any, typeVid: boolean) {
+  //   const content = {
+  //     title: '',
+  //     id: ''
+  //   }
+  //   if (typeVid) {
+  //     content.title = data.video_title;
+  //     content.id = data.video_link;
+  //   }
+  //   else {
+  //     content.title = data.pdf.slice(0, data.pdf.lastIndexOf(".pdf"));
+  //     content.id = data.pdf;
+  //   }
+  //   // // consoleee.log('sending ', content)
+  //   sessionStorage.setItem('matrial', JSON.stringify(content));
+  //   this.sendDist.setSharedData(content);
+  // }
+
+  // Summary(data: any , type:boolean) {
+  //       // // consoleee.log('Content ID :' , data.id)
+  //   const content = {
+  //     typeSummary:true,
+  //     title: '',
+  //     id: '',
+  //     matrialSummary:''
+  //   }
+  //   if (type) {
+  //     content.title = data.video_title;
+  //     content.id = data.id;
+  //     this.summary.getVidSummary(content.id).subscribe((data) => {
+  //       content.matrialSummary = data;
+  //       // // consoleee.log(' summary :', content.matrialSummary);
+  //       // // consoleee.log('sending ', content)
+  //       sessionStorage.setItem('matrial', JSON.stringify(content));
+
+  //       this.sendDist.setSharedData(content);
+  //       // // consoleee.log('Content ID :' , content.id)
+  //     });
+  //   }
+  //   else {
+  //     content.title = data.pdf.slice(0, data.pdf.lastIndexOf(".pdf"));
+  //     content.id = data.id;
+  //     this.summary.getpdfSummary(content.id).subscribe((data) => {
+  //        content.matrialSummary = data;
+  //       // // consoleee.log(' summary :', content.matrialSummary);
+  //       // // consoleee.log('sending ', content)
+  //       sessionStorage.setItem('matrial', JSON.stringify(content));
+  //       this.reloadPage();
+  //       this.sendDist.setSharedData(content);
+  //       // // consoleee.log('Content ID :' , content.id)
+  //     });
+  //   }
+
+
+  // }
+  // pdfSummary(id: number) {
+  //   // // consoleee.log(id)
+
+  // }
   newMatrialPage() {
     this.router.navigate(['/newMatrial', this.courseId, this.content.length + 1]);
+  }
+  reloadPage() {
+    const delayTime = 2000; // Time in milliseconds before reloading the page
+    setTimeout(() => {
+      location.reload();
+    }, delayTime);
   }
 }
