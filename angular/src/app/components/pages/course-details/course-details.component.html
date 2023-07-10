@@ -142,22 +142,22 @@
                       >
                         <ul class="ps-0 mb-0 list-unstyled" *ngFor="let item of week.items">
                           <div class="d-flex justify-content-between align-items-center">
-                            <li  (click)=" sendData(item , false)"  routerLink="/course-media"
+                            <li  (click)=" media(item , 1)"
                             ngbDropdownItem
                             class="d-sm-flex align-items-center gap-1" style="cursor: pointer;">
                           <i class="fa-regular fa-file-pdf"></i>
                           <a>{{item.pdf}}</a>
                           </li>
-                          <span> <a class="badge bg hove" style="color: #21225F;  font-weight: 700;" (click)="Summary(item , false)"  routerLink="/course-media">PDF Summary</a></span>
+                          <span> <a class="badge bg hove" style="color: #21225F;  font-weight: 700;" (click)="media(item , 2)"  >PDF Summary</a></span>
                           </div>
                           <div class="d-flex justify-content-between align-items-center">
-                            <li  (click)=" sendData(item , true)" routerLink="/course-media"
+                            <li   (click)="media(item , 3)"
                             ngbDropdownItem
                             class="d-sm-flex align-items-center gap-1" style="cursor: pointer;">
                             <i class="fa-solid fa-video"></i>
                             <a>{{item.video_title}}</a>
                             </li>
-                            <span>  <a class="badge bg" style="color: #21225F;  font-weight: 700;" (click)="Summary(item , true)"  routerLink="/course-media">video Summary</a></span>
+                            <span>  <a class="badge bg" style="color: #21225F;  font-weight: 700;"  (click)="media(item , 4)"  >video Summary</a></span>
                           </div>
                         </ul>
                       </div>
@@ -272,7 +272,7 @@
                     <app-slider [Comments]="courseReviews"></app-slider>
                   </div>
 
-                  <div class="course-details-write-review my-3">
+                  <div class="course-details-write-review my-3" *ngIf="!userData.type">
                     <h2>Write a Review</h2>
                     <p>What is it like to Course?</p>
                     <form
